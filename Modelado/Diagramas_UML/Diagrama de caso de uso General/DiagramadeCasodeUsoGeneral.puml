@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+
+actor "Usuario académico" as Usuario
+actor Estudiante
+actor "Docente / Investigador" as Docente
+actor "Personal bibliotecario" as Bibliotecario
+actor "Administrador TI" as Admin
+actor "Directivo académico" as Directivo
+
+Usuario <|-- Estudiante
+Usuario <|-- Docente
+
+rectangle "SIGBUNI" {
+
+  usecase "Consultar catálogo\ndigital" as UC1
+  usecase "Buscar por filtros" as UC2
+  usecase "Registrar préstamo\nbibliográfico" as UC3
+  usecase "Registrar devolución\nde material" as UC4
+  usecase "Renovar préstamo" as UC5
+  usecase "Reservar espacio\nbibliotecario" as UC6
+  usecase "Consultar\ndisponibilidad" as UC7
+  usecase "Registrar acceso\na biblioteca" as UC8
+  usecase "Consultar chatbot\nIA" as UC9
+  usecase "Obtener\nrecomendaciones" as UC10
+  usecase "Gestionar usuarios,\nroles y permisos" as UC11
+  usecase "Generar reportes\nestadísticos" as UC12
+  usecase "Enviar comunicados\nmasivos" as UC13
+
+  UC1 ..> UC2 : <<include>>
+  UC10 ..> UC9 : <<extend>>
+  UC6 ..> UC7 : <<include>>
+}
+
+Usuario --> UC1
+Usuario --> UC5
+Usuario --> UC6
+Usuario --> UC9
+Usuario --> UC10
+
+Bibliotecario --> UC3
+Bibliotecario --> UC4
+Bibliotecario --> UC8
+Bibliotecario --> UC12
+
+Admin --> UC11
+
+Directivo --> UC12
+Directivo --> UC13
+
+@enduml
