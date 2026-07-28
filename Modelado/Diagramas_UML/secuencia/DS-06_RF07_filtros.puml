@@ -1,0 +1,15 @@
+@startuml DS-06_RF07_filtros
+skinparam shadowing false
+
+actor Usuario
+participant "UI Catalogo" as UI
+participant "ServicioCatalogo" as SC
+database BD
+Usuario -> UI: aplicar filtros
+UI -> SC: filtrar(titulo,autor,ISBN,area)
+SC -> BD: queryFiltrada()
+BD --> SC: resultados
+SC --> UI: ordenados
+UI --> Usuario: resultados filtrados
+
+@enduml

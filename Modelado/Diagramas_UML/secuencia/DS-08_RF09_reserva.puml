@@ -1,0 +1,16 @@
+@startuml DS-08_RF09_reserva
+skinparam shadowing false
+
+actor Usuario
+participant "UI Reservas" as UI
+participant "ServicioReserva" as SR
+database BD
+Usuario -> UI: reservar espacio
+UI -> SR: crearReserva(fecha,hora,espacio)
+SR -> BD: verificarDisponibilidad()
+BD --> SR: libre
+SR -> BD: insertarReserva()
+SR --> UI: confirmada
+UI --> Usuario: reserva OK
+
+@enduml

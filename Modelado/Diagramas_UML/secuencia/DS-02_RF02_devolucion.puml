@@ -1,0 +1,18 @@
+@startuml DS-02_RF02_devolucion
+skinparam shadowing false
+
+actor Bibliotecario
+participant "UI Devolucion" as UI
+participant "ServicioPrestamo" as SP
+participant "Inventario" as INV
+database BD
+Bibliotecario -> UI: registrar devolucion
+UI -> SP: registrarDevolucion(prestamo)
+SP -> BD: obtenerPrestamoActivo()
+BD --> SP: prestamo
+SP -> BD: cerrarPrestamo(fecha)
+SP -> INV: actualizarEstado(material)
+SP --> UI: OK
+UI --> Bibliotecario: material disponible/condicionado
+
+@enduml

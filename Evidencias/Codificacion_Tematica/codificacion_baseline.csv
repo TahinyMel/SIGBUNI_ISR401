@@ -1,0 +1,10 @@
+Fragmento,Codigo,Categoria,Requisito_derivado,ID_evidencia,Analista
+Préstamo manual y seguimiento reactivo,PRESTAMO_MANUAL,Operación,"RF-01,RF-02",EV-01,Equipo
+Catálogo desactualizado / sin filtros,CATALOGO_FILTROS,Información,"RF-06,RF-07,RF-08",EV-02,Equipo
+Reserva informal e inasistencia,RESERVA_NOSHOW,Espacios,"RF-09,RF-10,RF-11",EV-03,Equipo
+Control de ingreso sin salida digital,ACCESO_MANUAL,Aforo,"RF-12,RF-13",EV-04,Equipo
+Ayuda digital y orientación,AYUDA_IA,IA,"RF-14,RF-15",EV-05,Equipo
+Dificultad con documentos extensos,RESUMEN_IA,IA,RF-16,EV-06,Equipo
+Necesidad de reportes y aforo,REPORTES_AFORO,Gestión,"RF-18,RF-25","EV-07,EV-14",Equipo
+Alertas internas preferidas,ALERTAS,Notificaciones,"RF-04,RF-05",EV-08,Equipo
+Gestión de usuarios/roles,ROLES,Seguridad,"RF-17,RF-22",EV-09,Equipo

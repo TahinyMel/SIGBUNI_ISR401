@@ -1,0 +1,15 @@
+@startuml DS-11_RF13_salida
+skinparam shadowing false
+
+actor Operador
+participant "UI Acceso" as UI
+participant "ServicioAcceso" as SA
+database BD
+Operador -> UI: registrar salida
+UI -> SA: registrarSalida(id)
+SA -> BD: localizarIngresoAbierto()
+BD --> SA: registro
+SA -> BD: cerrarVisita(ts)
+SA --> UI: permanencia calculada
+
+@enduml

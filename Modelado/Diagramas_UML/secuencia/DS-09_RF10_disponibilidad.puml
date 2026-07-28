@@ -1,0 +1,15 @@
+@startuml DS-09_RF10_disponibilidad
+skinparam shadowing false
+
+actor Usuario
+participant "UI Reservas" as UI
+participant "ServicioReserva" as SR
+database BD
+Usuario -> UI: consultar fecha/hora
+UI -> SR: disponibilidad(fecha,hora)
+SR -> BD: agendaEspacios()
+BD --> SR: espacios
+SR --> UI: calendario/listado
+UI --> Usuario: disponibles
+
+@enduml

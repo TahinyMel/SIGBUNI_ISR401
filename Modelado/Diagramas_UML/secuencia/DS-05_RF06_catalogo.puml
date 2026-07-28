@@ -1,0 +1,15 @@
+@startuml DS-05_RF06_catalogo
+skinparam shadowing false
+
+actor Usuario
+participant "UI Catalogo" as UI
+participant "ServicioCatalogo" as SC
+database BD
+Usuario -> UI: consultar catalogo
+UI -> SC: buscar(criterio)
+SC -> BD: queryMateriales()
+BD --> SC: resultados
+SC --> UI: listado
+UI --> Usuario: materiales
+
+@enduml

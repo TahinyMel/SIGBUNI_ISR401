@@ -1,0 +1,15 @@
+@startuml DS-13_RF18_reportes
+skinparam shadowing false
+
+actor Directivo
+participant "UI Reportes" as UI
+participant "ServicioReportes" as SR
+database BD
+Directivo -> UI: seleccionar tipo y rango
+UI -> SR: generar(tipo,rango)
+SR -> BD: agregarIndicadores()
+BD --> SR: datos
+SR --> UI: reporte visual/exportable
+UI --> Directivo: indicadores
+
+@enduml

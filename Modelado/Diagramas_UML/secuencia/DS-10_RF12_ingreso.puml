@@ -1,0 +1,15 @@
+@startuml DS-10_RF12_ingreso
+skinparam shadowing false
+
+actor Operador
+participant "UI Acceso" as UI
+participant "ServicioAcceso" as SA
+database BD
+Operador -> UI: escanear credencial
+UI -> SA: registrarIngreso(id)
+SA -> BD: validarIdentidad()
+BD --> SA: valida
+SA -> BD: insertarIngreso(ts)
+SA --> UI: ingreso registrado
+
+@enduml

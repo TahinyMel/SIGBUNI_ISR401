@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Si usa este repositorio, cítalo usando los metadatos de este archivo."
+title: "SIGBUNI: Especificación de Requisitos Completa y Protocolo Empírico (ISR401)"
+type: software
+authors:
+  - family-names: "Chavarria Cuenca"
+    given-names: "Tahiny Mel"
+    affiliation: "Universidad Técnica Estatal de Quevedo"
+  - family-names: "Cedeño Coronado"
+    given-names: "Wilson Lizandro"
+    affiliation: "Universidad Técnica Estatal de Quevedo"
+version: "1.1"
+date-released: "2026-07-28"
+url: "https://github.com/TahinyMel/SIGBUNI_ISR401"
+license: "MIT OR CC-BY-4.0"
+repository-code: "https://github.com/TahinyMel/SIGBUNI_ISR401"
+abstract: >
+  Documento ERS/SRS y protocolo empírico (Enfoque 1: calidad de RF humanos vs LLM)
+  del Sistema Inteligente de Gestión Bibliotecaria Universitaria (SIGBUNI).
+keywords:
+  - requirements engineering
+  - SIGBUNI
+  - large language models
+  - explainability
+  - university library
+# doi: "10.5281/zenodo.XXXXXXX"  # completar tras depósito Zenodo
+# orcid de cada autor: completar cuando esté disponible

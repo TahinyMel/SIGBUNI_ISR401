@@ -1,0 +1,16 @@
+@startuml DS-04_RF05_alerta_vencido
+skinparam shadowing false
+
+actor Sistema
+participant "Scheduler" as SCH
+participant "ServicioNotificacion" as SN
+database BD
+participant "Panel Bibliotecario" as PB
+SCH -> SN: revisarVencidos()
+SN -> BD: prestamosVencidos()
+BD --> SN: lista
+SN -> BD: crearAlertaAdmin()
+PB -> SN: consultarAlertas()
+SN --> PB: alertas visibles
+
+@enduml

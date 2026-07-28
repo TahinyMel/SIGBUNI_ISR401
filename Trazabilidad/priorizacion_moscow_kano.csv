@@ -1,0 +1,26 @@
+ID-RF,MoSCoW,Kano,UserValue,TimeCriticality,RiskReduction,JobSize,WSJF,Justificacion,EV
+RF-01,Must,Basic,9,8,7,5,4.8,Operación crítica diaria de biblioteca,"EV-01,EV-15"
+RF-02,Must,Basic,9,8,6,4,5.75,Cierra el ciclo del préstamo,EV-01
+RF-03,Should,Performance,6,5,4,3,5.0,Reduce filas y mejora autoservicio,EV-10
+RF-04,Must,Performance,8,9,6,3,7.67,Evita vencimientos y pérdida de material,"EV-01,EV-08"
+RF-05,Must,Basic,8,8,7,3,7.67,Control operativo de morosidad,EV-01
+RF-06,Must,Basic,9,7,5,4,5.25,Acceso al acervo es servicio base,"EV-02,EV-13"
+RF-07,Must,Performance,8,6,4,3,6.0,Reduce tiempo de búsqueda,EV-02
+RF-08,Must,Basic,8,7,5,2,10.0,Evita desplazamientos inútiles,EV-02
+RF-09,Must,Performance,8,7,5,5,4.0,Alta demanda de espacios observada,"EV-03,EV-15"
+RF-10,Must,Basic,7,6,4,3,5.67,Habilita decisión de reserva,EV-03
+RF-11,Should,Performance,6,7,6,4,4.75,Libera espacios por inasistencia,EV-03
+RF-12,Must,Basic,8,8,7,4,5.75,Control de aforo e ingreso,EV-04
+RF-13,Must,Basic,8,8,7,3,7.67,Completa permanencia y aforo,EV-04
+RF-14,Should,Attractive,6,4,3,5,2.6,Reduce carga de orientación,EV-05
+RF-15,Should,Attractive,7,4,4,6,2.5,Apoyo académico con IA,EV-05
+RF-16,Could,Attractive,5,3,3,6,1.83,"Valor agregado, no crítico",EV-06
+RF-17,Must,Basic,9,7,9,5,5.0,Seguridad y segregación de roles,EV-09
+RF-18,Must,Performance,8,6,6,5,4.0,Decisiones de gestión,"EV-07,EV-14"
+RF-19,Should,Performance,5,4,3,3,4.0,Comunicación masiva,EV-11
+RF-20,Could,Attractive,5,3,3,6,1.83,Personalización dependiente de privacidad,EV-12
+RF-21,Must,Basic,8,6,4,3,6.0,Consulta de préstamos propios (mockup MU-06),"EV-01,EV-08,EV-10"
+RF-22,Must,Basic,10,9,9,3,9.33,Puerta de autenticación institucional,EV-09
+RF-23,Must,Basic,8,6,6,4,5.0,Inventario actualizado (panel bibliotecario),"EV-01,EV-02"
+RF-24,Should,Performance,6,5,4,2,7.5,Cancelación de reserva por usuario,EV-03
+RF-25,Should,Performance,7,7,5,4,4.75,Aforo en horarios críticos,"EV-07,EV-14"

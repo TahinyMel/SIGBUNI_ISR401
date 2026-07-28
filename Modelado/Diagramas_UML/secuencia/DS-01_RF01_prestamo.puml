@@ -1,0 +1,20 @@
+@startuml DS-01_RF01_prestamo
+skinparam shadowing false
+
+actor Bibliotecario
+participant "UI Prestamos" as UI
+participant "ServicioPrestamo" as SP
+participant "Inventario" as INV
+database BD
+Bibliotecario -> UI: registrar prestamo
+UI -> SP: registrarPrestamo(u,m)
+SP -> BD: validarUsuario(u)
+BD --> SP: autorizado
+SP -> INV: disponibilidad(m)
+INV --> SP: disponible
+SP -> BD: insertarPrestamo()
+SP -> INV: estado=prestado
+SP --> UI: OK
+UI --> Bibliotecario: confirmacion
+
+@enduml

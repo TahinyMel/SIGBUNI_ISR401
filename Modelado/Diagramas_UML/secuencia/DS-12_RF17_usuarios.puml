@@ -1,0 +1,14 @@
+@startuml DS-12_RF17_usuarios
+skinparam shadowing false
+
+actor AdminTI
+participant "UI Admin" as UI
+participant "ServicioUsuarios" as SU
+database BD
+AdminTI -> UI: gestionar usuario/rol
+UI -> SU: crearEditarDesactivar()
+SU -> BD: persistirCambios()
+BD --> SU: OK
+SU --> UI: usuarios actualizados
+
+@enduml

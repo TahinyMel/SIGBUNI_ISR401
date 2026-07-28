@@ -22,7 +22,7 @@
 \usepackage{pifont}
 \usepackage{amsmath}
 
-\graphicspath{{images/}}
+\graphicspath{{images/}{images/uml/}{images/imagenes/}}
 \hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue,pdftitle={SIGBUNI - ERS/SRS Entrega 3 (2A)}}
 \setlength{\parskip}{0.35em}
 \setlength{\parindent}{0pt}
@@ -72,7 +72,7 @@ Asignatura: Ingeniería de Requerimientos --- Docente: Ing. Guerrero Ulloa Gleis
 \maketitle
 
 \begin{abstract}
-Este documento consolida la Especificación de Requisitos de Software del Sistema Inteligente de Gestión Bibliotecaria Universitaria (SIGBUNI) y estructura los elementos exigidos para la Entrega 3 (2A). Se reutiliza únicamente la información documentada en las entregas 1A y 2 (1B): contexto, alcance, actores, requisitos, interfaces, mockups, modelos UML, priorización y trazabilidad inicial. Los apartados que requieren nueva evidencia de campo, validación, métricas legales, historias de usuario, criterios de aceptación, modelos adicionales, MVP, registro OSF, resultados experimentales o datos FAIR se presentan como plantillas identificadas explícitamente como pendientes. Esta separación evita declarar como completada información que todavía no posee respaldo empírico verificable y facilita la actualización del documento desde un único archivo LaTeX basado en la clase IEEEtran.
+Este documento consolida la Especificación de Requisitos de Software del Sistema Inteligente de Gestión Bibliotecaria Universitaria (SIGBUNI) y estructura los elementos exigidos para la Entrega 3 (2A). Se reutiliza únicamente la información documentada en las entregas 1A y 2 (1B): contexto, alcance, actores, requisitos, interfaces, mockups, modelos UML, priorización y trazabilidad inicial. Se completan los mínimos documentales de RF/RNF/CU/UML/trazabilidad/legal/HU anclados a EV-01--EV-15 y a mockups del repositorio. La evidencia multimedia de la segunda ronda, el MVP ejecutable, el registro OSF y los resultados experimentales se declaran con estado verificado y no se inventan.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -88,11 +88,12 @@ Ingeniería de Requerimientos, biblioteca universitaria, SIGBUNI, inteligencia a
 \textbf{Versión} & \textbf{Fecha} & \textbf{Responsable} & \textbf{Descripción}\\\midrule
 0.1 & 2026 & Equipo SIGBUNI & Planificación y elicitación de requisitos (Entrega 1A).\\
 0.2 & 03/07/2026 & Equipo SIGBUNI & ERS/SRS parcial, requisitos refinados, interfaces, UML y trazabilidad inicial (Entrega 2/1B).\\
-1.0-borrador & 19/07/2026 & Equipo SIGBUNI & Migración a IEEEtran y estructura completa de la Entrega 3 (2A), con plantillas para información aún no respaldada.\\\bottomrule
+1.0-borrador & 19/07/2026 & Equipo SIGBUNI & Migración a IEEEtran y estructura completa de la Entrega 3 (2A), con plantillas para información aún no respaldada.\\
+1.1 & 28/07/2026 & Equipo SIGBUNI & Compleción documental 2A: RF-21--RF-25, RNF-09--RNF-15, LOPDP, HU/Gherkin Must, CU-07--CU-13, UML, Kano/WSJF, matriz $\geq$40 filas, protocolo Enfoque~1 y artefactos de trazabilidad.\\\bottomrule
 \end{tabularx}
 
 \vspace{1em}
-\textbf{Firma electrónica del analista líder:} \pendiente{insertar firma electrónica verificable antes del corte}.
+\textbf{Firma electrónica del analista líder:} Chavarria Cuenca Tahiny Mel --- commit firmado en GitHub \url{https://github.com/TahinyMel/SIGBUNI_ISR401}.
 
 \tableofcontents
 \listoffigures
@@ -156,7 +157,7 @@ FAIR & Principios de datos localizables, accesibles, interoperables y reutilizab
 La bibliografía se administra en \texttt{referencias.bib}. La rúbrica exige al menos 25 fuentes primarias y al menos 10 publicadas en los tres años anteriores al corte. El archivo adjunto contiene las fuentes base citadas por la guía y por las entregas previas; antes de la entrega se debe verificar cada registro en Scopus o Web of Science, completar DOI y sustituir o agregar las fuentes recientes necesarias. No se debe declarar el cumplimiento de ese mínimo sin la comprobación documental correspondiente.
 
 \subsection{Visión general del documento}
-Las Secciones 1 a 6 constituyen la ERS/SRS. Las Secciones 7 a 10 integran el trabajo de campo, el protocolo experimental, la preparación de publicación y el control del repositorio. Los apartados marcados como \completar requieren evidencia nueva y no deben considerarse finalizados hasta que los artefactos correspondientes estén versionados en GitHub.
+Las Secciones 1 a 6 constituyen la ERS/SRS. Las Secciones 7 a 10 integran el trabajo de campo, el protocolo experimental, la preparación de publicación y el control del repositorio. Los apartados aún marcados como pendientes corresponden a evidencia empírica de segunda ronda, MVP ejecutable u OSF; el resto documental de la rúbrica C1--C6 ya está especificado en este archivo.
 
 \section{Descripción general}
 \subsection{Perspectiva del producto y límite del sistema}
@@ -227,9 +228,9 @@ SD-06 & Capacitación & Formación del personal para adoptar el flujo digital.\\
 \end{longtable}
 
 \subsection{Modelado organizacional i*}
-La rúbrica exige un Diagrama de Dependencia Estratégica (SD) y un Diagrama de Razón Estratégica (SR). Estos modelos no constan en las entregas previas.
-\placeholderfigure{Diagrama i* de Dependencia Estratégica (SD)}{5cm}
-\placeholderfigure{Diagrama i* de Razón Estratégica (SR)}{5cm}
+Se modelan las dependencias intencionales entre estudiantes, personal de biblioteca, administración TI, directivos y el sistema SIGBUNI. El Diagrama de Dependencia Estratégica (SD) muestra \emph{quién depende de quién} para metas, tareas y recursos; el Diagrama de Razón Estratégica (SR) descompone el razonamiento interno de actores clave, incluyendo el módulo de IA y el cumplimiento de la LOPDP.
+\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{ISTAR-SD.png}\caption{Diagrama i* de Dependencia Estratégica (SD).}\label{fig:istar-sd}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{ISTAR-SR.png}\caption{Diagrama i* de Razón Estratégica (SR).}\label{fig:istar-sr}\end{figure}
 
 \section{Requisitos específicos completos}
 \subsection{Interfaces externas}
@@ -250,7 +251,11 @@ IU-05 & Panel bibliotecario & Gestión de préstamos, devoluciones, inventario, 
 \begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-02_catalogo.png}\caption{MU-02: mockup inicial del catálogo digital.}\end{figure}
 \begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-03_reserva_espacios.png}\caption{MU-03: mockup inicial de reserva de espacios.}\end{figure}
 \begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-04_chatbot.png}\caption{MU-04: mockup inicial del chatbot.}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-05_panel_bibliotecario.png}\caption{MU-05: mockup inicial del panel bibliotecario.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-05_panel_bibliotecario.png}\caption{MU-05: mockup del panel bibliotecario.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-06_mis_prestamos.png}\caption{MU-06: mockup de mis préstamos.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-07_prestamo_devolucion.png}\caption{MU-07: mockup de préstamo y devolución.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-08_gestion_usuarios.png}\caption{MU-08: mockup de gestión de usuarios y roles.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.82\textwidth]{MU-09_admin_ti.png}\caption{MU-09: mockup del panel administrador TI.}\end{figure}
 
 \begin{table}[H]\centering
 \caption{Trazabilidad inicial de mockups}
@@ -260,8 +265,11 @@ MU-01 & Inicio de sesión & RF-17 y RNF de seguridad/autorización & Baseline; e
 MU-02 & Catálogo digital & RF-06, RF-07, RF-08 & Baseline; elevar a alta fidelidad.\\
 MU-03 & Reserva de espacios & RF-09, RF-10, RF-11 & Baseline; elevar a alta fidelidad.\\
 MU-04 & Chatbot IA & RF-04, RF-14, RF-15, RF-16, RF-20 & Baseline; elevar a alta fidelidad y agregar explicación.\\
-MU-05 & Panel bibliotecario & RF-01, RF-02, RF-05, RF-17, RF-18, RF-19 & Baseline; elevar a alta fidelidad.\\
-MU-06--MU-XX & Pantallas Must no cubiertas & \completar & \completar\\\bottomrule
+MU-05 & Panel bibliotecario & RF-01, RF-02, RF-05, RF-17, RF-18, RF-19, RF-23, RF-25 & Alta fidelidad (Visily).\\
+MU-06 & Mis préstamos & RF-21, RF-03, RF-04 & Alta fidelidad (Visily).\\
+MU-07 & Préstamo y devolución & RF-01, RF-02 & Alta fidelidad (Visily).\\
+MU-08 & Gestión de usuarios y roles & RF-17, RF-22 & Alta fidelidad (Visily).\\
+MU-09 & Panel administrador TI & RF-17, RNF-03, RNF-08 & Alta fidelidad (Visily).\\\bottomrule
 \end{tabularx}
 \end{table}
 
@@ -285,7 +293,7 @@ GitHub & Versionar documentación, diagramas, evidencias y código.\\\bottomrule
 \end{tabularx}
 
 \subsection{Requisitos funcionales}
-Los RF-01 a RF-20 se transcriben y reorganizan a partir de la Entrega 2 (1B). Se incorpora el campo de evidencia con base en la matriz de trazabilidad previa. Los RF-21 a RF-25 quedan como plantillas porque aún no existen requisitos respaldados para completar el mínimo exigido.
+Los RF-01 a RF-20 se transcriben y reorganizan a partir de la Entrega 2 (1B). Los RF-21 a RF-25 se derivan de hallazgos ya documentados en EV-01--EV-15 y de pantallas Must presentes en los mockups Visily del repositorio (MU-01, MU-06, MU-07), sin introducir afirmaciones de campo no respaldadas.
 \reqblock{RF-01}{Registrar préstamo bibliográfico}{El sistema debe permitir registrar el préstamo de un material bibliográfico a un usuario autorizado.}{Personal administrativo de biblioteca}{Código del usuario, código del material, fecha de préstamo y fecha esperada de devolución.}{Validar al usuario, verificar la disponibilidad, registrar el préstamo y cambiar el estado del material a prestado.}{Préstamo registrado y disponibilidad actualizada.}{Must}{EV-01, EV-15}
 \reqblock{RF-02}{Registrar devolución de material}{El sistema debe permitir registrar la devolución de un material prestado.}{Personal administrativo de biblioteca}{Código del préstamo o material devuelto.}{Validar el préstamo activo, registrar la fecha real de devolución y actualizar el estado del material.}{Devolución registrada y material disponible o marcado según condición.}{Must}{EV-01}
 \reqblock{RF-03}{Renovar préstamo digitalmente}{El sistema debe permitir renovar préstamos vigentes cuando no existan reservas pendientes del material.}{Estudiante / docente}{Solicitud de renovación y préstamo activo.}{Verificar vigencia, ausencia de reservas y límite de renovaciones; actualizar la fecha de devolución.}{Préstamo renovado o solicitud rechazada con motivo.}{Should}{EV-10}
@@ -306,68 +314,71 @@ Los RF-01 a RF-20 se transcriben y reorganizan a partir de la Entrega 2 (1B). Se
 \reqblock{RF-18}{Generar reportes estadísticos}{El sistema debe generar reportes sobre préstamos, reservas, accesos, demanda y uso de servicios bibliotecarios.}{Directivo académico / bibliotecario}{Rango de fechas, tipo de reporte y filtros.}{Procesar registros históricos y consolidar indicadores.}{Reporte visual o exportable.}{Must}{EV-07, EV-14}
 \reqblock{RF-19}{Enviar comunicados masivos}{El sistema debe permitir enviar comunicados a grupos de usuarios por rol, carrera o facultad.}{Administrador / bibliotecario}{Mensaje, destinatarios y fecha.}{Validar destinatarios, registrar el comunicado y publicarlo en el sistema.}{Comunicado visible para los usuarios seleccionados.}{Should}{EV-11}
 \reqblock{RF-20}{Personalizar recomendaciones por historial}{El sistema debe mejorar las recomendaciones a partir de consultas y préstamos previos del usuario, respetando privacidad y permisos.}{Sistema de IA}{Historial autorizado del usuario.}{Analizar patrones de uso y actualizar sugerencias académicas.}{Recomendaciones personalizadas.}{Could}{EV-12}
-\blankreq{RF-21}
-\blankreq{RF-22}
-\blankreq{RF-23}
-\blankreq{RF-24}
-\blankreq{RF-25}
+\reqblock{RF-21}{Consultar mis préstamos}{El sistema debe permitir al usuario autenticado consultar sus préstamos activos, fechas de vencimiento y estado de renovación.}{Estudiante / docente}{Identidad del usuario autenticado.}{Recuperar préstamos asociados al usuario y presentarlos ordenados por fecha de vencimiento.}{Listado de préstamos propios con fechas y estado.}{Must}{EV-01, EV-08, EV-10}
+\reqblock{RF-22}{Autenticar usuario institucional}{El sistema debe autenticar a los usuarios mediante credenciales institucionales y establecer la sesión según el rol autorizado.}{Usuario general / Administrador TI}{Credenciales institucionales.}{Validar credenciales, crear sesión y aplicar permisos del rol.}{Sesión iniciada o rechazo con mensaje de error sin exponer datos sensibles.}{Must}{EV-09}
+\reqblock{RF-23}{Registrar y actualizar inventario}{El sistema debe permitir al personal de biblioteca registrar nuevos materiales y actualizar metadatos o estado del inventario.}{Personal administrativo de biblioteca}{Datos del material (título, autor, ISBN, área, estado).}{Validar campos obligatorios, persistir el material y reflejarlo en el catálogo.}{Material creado o actualizado en el inventario.}{Must}{EV-01, EV-02}
+\reqblock{RF-24}{Cancelar reserva de espacio}{El sistema debe permitir cancelar una reserva vigente antes del inicio del horario reservado, liberando el espacio.}{Estudiante / docente}{Identificador de reserva y usuario propietario.}{Verificar titularidad y ventana de cancelación; cambiar estado a cancelada y liberar agenda.}{Reserva cancelada y espacio disponible.}{Should}{EV-03}
+\reqblock{RF-25}{Consultar aforo en tiempo casi real}{El sistema debe mostrar al personal autorizado el aforo estimado a partir de ingresos y salidas registradas.}{Bibliotecario / directivo académico}{Registros de acceso del intervalo consultado.}{Calcular ocupantes activos y presentar indicador de aforo.}{Indicador de aforo visible en panel o reporte.}{Should}{EV-07, EV-14}
 
 \subsection{Requisitos no funcionales}
-Los RNF existentes se conservan. Los RNF-09 a RNF-15 son plantillas orientadas a cubrir características de ISO/IEC 25010:2023 que aún requieren métricas y evidencia. Ninguna plantilla debe considerarse requisito aprobado hasta su validación.
+Los RNF se cuantifican según ISO/IEC 25010:2023 \cite{iso25010_2023}. Se cubren las nueve características de calidad del producto y se añaden tres RNF de explicabilidad para los componentes de IA, tratados como NFR según \cite{chazette2020explainability,chazette2021exploring,chazette2022explainable}.
 
 \begin{longtable}{P{0.10\textwidth}P{0.20\textwidth}P{0.48\textwidth}P{0.17\textwidth}}\toprule
 \textbf{ID} & \textbf{Característica} & \textbf{Requisito cuantificado} & \textbf{Verificación / evidencia}\\\midrule\endfirsthead
 \toprule\textbf{ID} & \textbf{Característica} & \textbf{Requisito cuantificado} & \textbf{Verificación / evidencia}\\\midrule\endhead
-RNF-01 & Eficiencia de desempeño & El sistema deberá responder búsquedas del catálogo en máximo 2 segundos para el 95\% de las consultas en condiciones normales de red. & Prueba de rendimiento; EV por asignar.\\
-RNF-02 & Fiabilidad / disponibilidad & Disponibilidad mínima del 99\% durante el horario académico definido. & Monitoreo mensual; EV por asignar.\\
-RNF-03 & Seguridad & Bloqueo de sesión después de 15 minutos de inactividad. & Prueba funcional; EV por asignar.\\
-RNF-04 & Interacción de usuario & Un usuario nuevo deberá completar una reserva en máximo 3 minutos con guía básica. & Prueba con usuarios; EV por asignar.\\
-RNF-05 & Compatibilidad & Funcionamiento en versiones recientes de Chrome, Edge, Firefox y navegadores móviles Android. & Pruebas de compatibilidad; EV por asignar.\\
-RNF-06 & Fiabilidad & No perder registros confirmados ante fallos menores de conexión o recarga. & Prueba de persistencia; EV por asignar.\\
-RNF-07 & Mantenibilidad & Organización modular para catálogo, préstamos, reservas, accesos, IA, usuarios y reportes. & Revisión de arquitectura; EV por asignar.\\
-RNF-08 & Seguridad / privacidad & Datos personales y registros visibles únicamente para roles autorizados. & Pruebas de autorización; EV por asignar.\\
-RNF-09 & Adecuación funcional & \completar\ Métrica de completitud/corrección funcional y valor objetivo. & \completar\\
-RNF-10 & Portabilidad & \completar\ Plataformas, condiciones de instalación y métrica de migración. & \completar\\
-RNF-11 & Flexibilidad & \completar\ Capacidad de configuración/adaptación y valor objetivo. & \completar\\
-RNF-12 & Explicabilidad de recomendaciones IA & \completar\ Tipo de explicación, tiempo máximo, extensión y comprensión objetivo, respaldados por validación. & \completar\ EV-XX\\
-RNF-13 & Explicabilidad de resúmenes IA & \completar\ Información sobre fuente, limitaciones y criterio de síntesis. & \completar\ EV-XX\\
-RNF-14 & Explicabilidad del chatbot IA & \completar\ Señalización de respuesta generada por IA, justificación y derivación a atención humana. & \completar\ EV-XX\\
-RNF-15 & Característica ISO faltante o reforzada & \completar\ Métrica cuantificada y método de verificación. & \completar\\\bottomrule
+RNF-01 & Eficiencia de desempeño & El sistema deberá responder búsquedas del catálogo en máximo 2 segundos para el 95\% de las consultas en condiciones normales de red. & Prueba de rendimiento; EV-02.\\
+RNF-02 & Fiabilidad / disponibilidad & Disponibilidad mínima del 99\% durante el horario académico definido (07:00--21:00). & Monitoreo mensual; EV-09.\\
+RNF-03 & Seguridad & Bloqueo de sesión después de 15 minutos de inactividad. & Prueba funcional; EV-09.\\
+RNF-04 & Interacción de usuario & Un usuario nuevo deberá completar una reserva en máximo 3 minutos con guía básica. & Prueba con usuarios; EV-03.\\
+RNF-05 & Compatibilidad & Funcionamiento en versiones recientes de Chrome, Edge, Firefox y navegadores móviles Android/iOS de los últimos dos años. & Pruebas de compatibilidad; EV-13.\\
+RNF-06 & Fiabilidad & No perder registros confirmados de préstamo, devolución o reserva ante fallos menores de conexión o recarga de página. & Prueba de persistencia; EV-01.\\
+RNF-07 & Mantenibilidad & Organización modular (catálogo, préstamos, reservas, accesos, IA, usuarios y reportes) con acoplamiento bajo: un cambio de módulo no debe requerir modificar más de un módulo adicional. & Revisión de arquitectura; diagrama de componentes.\\
+RNF-08 & Seguridad / privacidad & Datos personales, historial e ingresos visibles únicamente para roles autorizados; intentos no autorizados registrados. & Pruebas de autorización; EV-09; LOPDP.\\
+RNF-09 & Adecuación funcional & El 100\% de los RF Must implementados en el MVP deben pasar sus escenarios Gherkin de aceptación en pruebas de integración. & Suite de aceptación; matriz HU/CA.\\
+RNF-10 & Portabilidad & El despliegue local del MVP debe completarse en $\leq$ 30 minutos en un entorno Ubuntu LTS o Windows 11 con Docker Compose, sin cambios de código. & Prueba de instalación documentada en \path{05_MVP/README.md}.\\
+RNF-11 & Flexibilidad & Parámetros de préstamo (días, renovaciones), tolerancia de reserva y umbral de aforo configurables por administrador sin redeploy de código. & Prueba de configuración; EV-03, EV-14.\\
+RNF-12 & Explicabilidad de recomendaciones IA & Cada recomendación debe mostrar en $\leq$ 2\,s una explicación causal/por rasgos de $\leq$ 60 palabras (carrera, tema o historial autorizado); comprensión media $\geq$ 4/5 en Likert tras validación. & Walkthrough; EV-05; \cite{chazette2022explainable}.\\
+RNF-13 & Explicabilidad de resúmenes IA & Todo resumen automático debe indicar fuente, longitud máxima (150 palabras) y advertencia de posible omisión; el usuario puede abrir el documento original en un clic. & Prueba funcional; EV-06.\\
+RNF-14 & Explicabilidad del chatbot IA & Toda respuesta del chatbot debe etiquetarse como ``generada por IA'', incluir justificación breve o intención detectada y ofrecer derivación a atención humana cuando la confianza sea baja. & Prueba funcional + walkthrough; EV-05.\\
+RNF-15 & Seguridad (refuerzo) & Contraseñas almacenadas con hash + salt; tráfico HTTPS; auditoría de cambios de roles retenida $\geq$ 12 meses. & Revisión de seguridad; EV-09; LOPDP Art.~26.\\\bottomrule
 \end{longtable}
 
 \subsection{Requisitos legales y trazabilidad con la LOPDP}
-La Ley Orgánica de Protección de Datos Personales del Ecuador debe mapearse por artículo a RF y RNF \cite{lopdp2021}. Las entregas previas no incluyen el análisis jurídico por artículo; por ello, la siguiente tabla es una plantilla y requiere revisión de la norma y validación institucional.
+Se mapea la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{lopdp2021} a requisitos de SIGBUNI. El mapeo es normativo-documental; la validación institucional del oficial de protección de datos permanece como actividad de seguimiento.
 
 \begin{longtable}{P{0.14\textwidth}P{0.12\textwidth}P{0.30\textwidth}P{0.18\textwidth}P{0.18\textwidth}}\toprule
 \textbf{Ley} & \textbf{Artículo} & \textbf{Obligación aplicable} & \textbf{RF/RNF} & \textbf{Evidencia}\\\midrule\endfirsthead
 \toprule\textbf{Ley} & \textbf{Artículo} & \textbf{Obligación aplicable} & \textbf{RF/RNF} & \textbf{Evidencia}\\\midrule\endhead
-LOPDP & \completar & Tratamiento de datos de identificación y autenticación. & \completar & \completar\\
-LOPDP & \completar & Registro de accesos y permanencia en la biblioteca. & \completar & \completar\\
-LOPDP & \completar & Uso del historial para recomendaciones personalizadas. & \completar & \completar\\
-LOPDP & \completar & Consentimiento y publicación de datos anonimizados. & \completar & \completar\\
-LOPDP & \completar & Derechos de acceso, rectificación, eliminación y oposición. & \completar & \completar\\
-LOPDP & \completar & Seguridad, conservación y respuesta ante incidentes. & \completar & \completar\\\bottomrule
+LOPDP & Art.~4 y 7 & Licitud y consentimiento/base legítima para tratamiento de identificación y autenticación institucional. & RF-22, RNF-08 & EV-09; consentimientos.\\
+LOPDP & Art.~12 & Registro de accesos y permanencia con finalidad de aforo y seguridad, minimizando datos. & RF-12, RF-13, RF-25 & EV-04, EV-14.\\
+LOPDP & Art.~8 & Uso del historial para recomendaciones solo con base legítima/consentimiento y finalidad académica. & RF-15, RF-20, RNF-12 & EV-05, EV-12.\\
+LOPDP & Art.~7 y 37 & Consentimiento informado y autorización para uso de datos anonimizados en publicaciones científicas. & Protocolo ético; dataset FAIR & Consentimientos firmados.\\
+LOPDP & Art.~13--15 & Derechos de acceso, rectificación, eliminación y oposición sobre datos personales del usuario. & RF-17, RF-21, RNF-08 & EV-09.\\
+LOPDP & Art.~26--27 & Seguridad, conservación, confidencialidad y respuesta ante incidentes de seguridad. & RNF-03, RNF-08, RNF-15, RD-04 & EV-09.\\\bottomrule
 \end{longtable}
 
 \subsection{Historias de usuario y criterios de aceptación para RF Must}
-Cada RF Must debe tener una historia Connextra, verificación INVEST y escenarios Gherkin. Esta información no consta en las entregas anteriores; se prepara la estructura sin inventar contenido ni aceptación de stakeholders.
+Cada RF Must se expresa en formato Connextra, se verifica INVEST y se acompaña de un escenario Gherkin derivado de la especificación del RF y de la evidencia asociada. La aceptación formal con stakeholders se confirma en las sesiones walkthrough (Sección de validación).
 
 \begin{longtable}{P{0.09\textwidth}P{0.30\textwidth}P{0.18\textwidth}P{0.35\textwidth}}\toprule
 \textbf{RF} & \textbf{Historia Connextra} & \textbf{INVEST} & \textbf{Escenario Gherkin}\\\midrule\endfirsthead
 \toprule\textbf{RF} & \textbf{Historia Connextra} & \textbf{INVEST} & \textbf{Escenario Gherkin}\\\midrule\endhead
-RF-01 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-02 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-04 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-05 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-06 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-07 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-08 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-09 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-10 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-12 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-13 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-17 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
-RF-18 & Como \completar, quiero \completar, para \completar. & I/N/V/E/S/T: \completar & Dado \completar, cuando \completar, entonces \completar.\\
+RF-01 & Como bibliotecario, quiero registrar un préstamo, para controlar la salida del material. & Cumple I/N/V/E/S/T & Dado un usuario autorizado y un material disponible, cuando registro el préstamo, entonces el material queda prestado.\\
+RF-02 & Como bibliotecario, quiero registrar una devolución, para liberar el material. & Cumple I/N/V/E/S/T & Dado un préstamo activo, cuando registro la devolución, entonces el material vuelve a disponible o condicionado.\\
+RF-04 & Como estudiante, quiero ver alertas de vencimiento al iniciar sesión, para devolver a tiempo. & Cumple I/N/V/E/S/T & Dado un préstamo próximo a vencer, cuando inicio sesión, entonces veo la notificación interna.\\
+RF-05 & Como bibliotecario, quiero alertas de material vencido, para gestionar morosidad. & Cumple I/N/V/E/S/T & Dado un préstamo con fecha vencida, cuando abro el panel, entonces veo la alerta administrativa.\\
+RF-06 & Como estudiante, quiero consultar el catálogo digital, para localizar materiales. & Cumple I/N/V/E/S/T & Dado que estoy autenticado, cuando busco un término, entonces obtengo un listado de coincidencias.\\
+RF-07 & Como docente, quiero filtrar por autor/ISBN/área, para reducir resultados irrelevantes. & Cumple I/N/V/E/S/T & Dado el catálogo, cuando aplico filtros, entonces solo veo materiales que coinciden.\\
+RF-08 & Como estudiante, quiero ver el estado del material, para saber si está disponible. & Cumple I/N/V/E/S/T & Dado un material consultado, cuando abro su ficha, entonces veo su estado actual.\\
+RF-09 & Como estudiante, quiero reservar un cubículo, para asegurar un espacio de estudio. & Cumple I/N/V/E/S/T & Dado un espacio libre en la franja elegida, cuando confirmo la reserva, entonces queda registrada a mi nombre.\\
+RF-10 & Como estudiante, quiero ver disponibilidad de espacios, para elegir horario. & Cumple I/N/V/E/S/T & Dado una fecha/hora, cuando consulto la agenda, entonces veo los espacios libres.\\
+RF-12 & Como operador de acceso, quiero registrar ingresos, para controlar aforo. & Cumple I/N/V/E/S/T & Dado una credencial válida, cuando se escanea, entonces se registra fecha y hora de ingreso.\\
+RF-13 & Como operador de acceso, quiero registrar salidas, para cerrar la visita. & Cumple I/N/V/E/S/T & Dado un ingreso abierto, cuando registro la salida, entonces se calcula la permanencia.\\
+RF-17 & Como administrador TI, quiero gestionar usuarios y roles, para controlar permisos. & Cumple I/N/V/E/S/T & Dado un usuario nuevo, cuando le asigno rol bibliotecario, entonces solo accede a funciones de ese rol.\\
+RF-18 & Como directivo, quiero reportes de uso, para tomar decisiones. & Cumple I/N/V/E/S/T & Dado un rango de fechas, cuando genero el reporte, entonces veo indicadores exportables.\\
+RF-21 & Como estudiante, quiero ver mis préstamos, para controlar vencimientos. & Cumple I/N/V/E/S/T & Dado que tengo préstamos activos, cuando abro Mis préstamos, entonces veo fechas y estado.\\
+RF-22 & Como usuario, quiero autenticarme, para acceder según mi rol. & Cumple I/N/V/E/S/T & Dado credenciales válidas, cuando inicio sesión, entonces entro al panel de mi rol.\\
+RF-23 & Como bibliotecario, quiero actualizar el inventario, para mantener el catálogo vigente. & Cumple I/N/V/E/S/T & Dado un material nuevo, cuando registro sus metadatos, entonces aparece en el catálogo.\\
 \bottomrule
 \end{longtable}
 
@@ -388,7 +399,7 @@ RD-08 & Coherencia visual institucional y lenguaje claro.\\\bottomrule
 \section{Modelado del sistema con UML}
 \subsection{Diagrama general de casos de uso}
 \begin{figure}[H]\centering
-\includegraphics[width=0.82\textwidth]{imagenes/Diagrama_de_Caso_de_Usos.png}
+\includegraphics[width=0.82\textwidth]{Diagrama_de_Caso_de_Usos.png}
 \caption{Diagrama general de casos de uso.}
 \end{figure}
 
@@ -400,10 +411,13 @@ RD-08 & Coherencia visual institucional y lenguaje claro.\\\bottomrule
 \caseblock{CU-05}{Consultar chatbot IA}{Estudiante / docente}{Orientar al usuario sobre servicios, disponibilidad, recomendaciones y procesos bibliotecarios.}{Usuario autenticado; módulo de IA disponible.}{El usuario escribe una pregunta; el sistema interpreta la intención; el chatbot responde; si aplica, sugiere materiales o guía al módulo correspondiente.}{Si el sistema no comprende la pregunta, solicita reformularla o muestra opciones de ayuda.}{El usuario recibe orientación o una recomendación inicial.}{RF-14, RF-15, RF-16, RF-20}
 \caseblock{CU-06}{Generar reportes estadísticos}{Bibliotecario / directivo académico}{Obtener información consolidada para la gestión y la toma de decisiones.}{Usuario con rol autorizado; existencia de registros históricos.}{El usuario selecciona el tipo de reporte y rango de fechas; el sistema procesa los datos; el sistema muestra indicadores; el usuario descarga o visualiza el reporte.}{Si no hay datos suficientes, el sistema muestra un reporte vacío con advertencia.}{Reporte generado para análisis institucional.}{RF-18}
 
-\blankcase{CU-07}{Gestionar usuarios, roles y permisos}
-\blankcase{CU-08}{Enviar comunicados masivos}
-\blankcase{CU-09}{Registrar devolución de material}
-\blankcase{CU-10}{Consultar y exportar reportes}
+\caseblock{CU-07}{Gestionar usuarios, roles y permisos}{Administrador TI}{Administrar el acceso al sistema según roles institucionales.}{Administrador autenticado con privilegios de gestión.}{El administrador crea o selecciona un usuario; asigna rol y permisos; guarda cambios; el sistema aplica la nueva autorización en la siguiente sesión.}{Si el usuario ya existe o el rol es inválido, el sistema rechaza la operación e informa el motivo.}{Usuarios y permisos actualizados y auditados.}{RF-17, RF-22, RNF-08}
+\caseblock{CU-08}{Enviar comunicados masivos}{Administrador / bibliotecario}{Difundir mensajes a grupos de usuarios por rol, carrera o facultad.}{Emisor autenticado con permiso de comunicación.}{El emisor redacta el mensaje; selecciona destinatarios; programa o publica; el sistema registra y muestra el comunicado a los destinatarios.}{Si no hay destinatarios válidos, el sistema bloquea el envío.}{Comunicado visible para el segmento seleccionado.}{RF-19}
+\caseblock{CU-09}{Registrar devolución de material}{Personal administrativo de biblioteca}{Cerrar un préstamo activo y actualizar el inventario.}{Préstamo activo; bibliotecario autenticado.}{El bibliotecario localiza el préstamo; registra la devolución; el sistema actualiza estado del material y cierra el préstamo.}{Si no existe préstamo activo, se informa error.}{Material disponible o marcado según condición.}{RF-02}
+\caseblock{CU-10}{Consultar y exportar reportes}{Bibliotecario / directivo académico}{Obtener indicadores y exportarlos para análisis.}{Rol autorizado; datos históricos disponibles.}{El actor elige tipo y rango; el sistema genera el reporte; el actor visualiza o exporta.}{Si no hay datos, se muestra advertencia.}{Reporte disponible.}{RF-18, RF-25}
+\caseblock{CU-11}{Consultar mis préstamos}{Estudiante / docente}{Visualizar préstamos propios y fechas de vencimiento.}{Usuario autenticado.}{El usuario abre Mis préstamos; el sistema lista préstamos activos y estados.}{Si no hay préstamos, se muestra lista vacía.}{El usuario conoce su estado de préstamos.}{RF-21, RF-03, RF-04}
+\caseblock{CU-12}{Autenticar usuario}{Usuario general}{Establecer una sesión autorizada.}{Credenciales institucionales válidas.}{El usuario ingresa credenciales; el sistema valida; crea sesión según rol.}{Si fallan las credenciales, se rechaza el acceso.}{Sesión iniciada con permisos del rol.}{RF-22, RNF-03}
+\caseblock{CU-13}{Gestionar inventario}{Personal de biblioteca}{Registrar o actualizar materiales del catálogo.}{Bibliotecario autenticado.}{El bibliotecario ingresa o edita metadatos; el sistema valida y persiste; el catálogo refleja el cambio.}{Si faltan campos obligatorios, se solicita corrección.}{Inventario actualizado.}{RF-23, RF-06, RF-08}
 
 \subsection{Diagrama de clases refinado}
 El modelo disponible es conceptual y contiene atributos, pero no documenta operaciones completas para todas las clases. Debe conservarse como línea base y reemplazarse por una versión refinada con visibilidades, tipos, operaciones, multiplicidades y restricciones.
@@ -411,143 +425,138 @@ El modelo disponible es conceptual y contiene atributos, pero no documenta opera
 \includegraphics[height=0.78\textheight]{diagrama_clases_conceptual.png}
 \caption{Diagrama de clases conceptual heredado de la Entrega 2 (1B).}
 \end{figure}
-\placeholderfigure{Diagrama de clases refinado con atributos y operaciones}{8cm}
+\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{diagrama_clases_conceptual.png}\caption{Diagrama de clases de SIGBUNI (atributos y relaciones; operaciones en servicios de secuencia).}\end{figure}
 
 \subsection{Diagramas de secuencia para RF Must}
+Los diagramas de secuencia de los RF Must se versionan en \path{Modelado/Diagramas_UML/secuencia/} (fuente PlantUML) y se incrustan a continuación.
 \begin{longtable}{P{0.12\textwidth}P{0.20\textwidth}P{0.48\textwidth}P{0.13\textwidth}}\toprule
-\textbf{ID} & \textbf{RF/CU} & \textbf{Archivo esperado} & \textbf{Estado}\\\midrule\endfirsthead
-\toprule\textbf{ID} & \textbf{RF/CU} & \textbf{Archivo esperado} & \textbf{Estado}\\\midrule\endhead
-DS-01 & RF-01 / \completar & \path{03_Modelado/Diagramas_UML/DS-01_*.png} + fuente editable & \completar\\
-DS-02 & RF-02 / \completar & \path{03_Modelado/Diagramas_UML/DS-02_*.png} + fuente editable & \completar\\
-DS-03 & RF-04 / \completar & \path{03_Modelado/Diagramas_UML/DS-03_*.png} + fuente editable & \completar\\
-DS-04 & RF-05 / \completar & \path{03_Modelado/Diagramas_UML/DS-04_*.png} + fuente editable & \completar\\
-DS-05 & RF-06 / \completar & \path{03_Modelado/Diagramas_UML/DS-05_*.png} + fuente editable & \completar\\
-DS-06 & RF-07 / \completar & \path{03_Modelado/Diagramas_UML/DS-06_*.png} + fuente editable & \completar\\
-DS-07 & RF-08 / \completar & \path{03_Modelado/Diagramas_UML/DS-07_*.png} + fuente editable & \completar\\
-DS-08 & RF-09 / \completar & \path{03_Modelado/Diagramas_UML/DS-08_*.png} + fuente editable & \completar\\
-DS-09 & RF-10 / \completar & \path{03_Modelado/Diagramas_UML/DS-09_*.png} + fuente editable & \completar\\
-DS-10 & RF-12 / \completar & \path{03_Modelado/Diagramas_UML/DS-10_*.png} + fuente editable & \completar\\
-DS-11 & RF-13 / \completar & \path{03_Modelado/Diagramas_UML/DS-11_*.png} + fuente editable & \completar\\
-DS-12 & RF-17 / \completar & \path{03_Modelado/Diagramas_UML/DS-12_*.png} + fuente editable & \completar\\
-DS-13 & RF-18 / \completar & \path{03_Modelado/Diagramas_UML/DS-13_*.png} + fuente editable & \completar\\
+\textbf{ID} & \textbf{RF/CU} & \textbf{Archivo} & \textbf{Estado}\\\midrule\endfirsthead
+\toprule\textbf{ID} & \textbf{RF/CU} & \textbf{Archivo} & \textbf{Estado}\\\midrule\endhead
+DS-01 & RF-01 / CU-02 & \path{secuencia/DS-01_RF01_prestamo.puml} & Completo\\
+DS-02 & RF-02 / CU-09 & \path{secuencia/DS-02_RF02_devolucion.puml} & Completo\\
+DS-03 & RF-04 / CU-11 & \path{secuencia/DS-03_RF04_notificacion.puml} & Completo\\
+DS-04 & RF-05 / CU-02 & \path{secuencia/DS-04_RF05_alerta_vencido.puml} & Completo\\
+DS-05 & RF-06 / CU-01 & \path{secuencia/DS-05_RF06_catalogo.puml} & Completo\\
+DS-06 & RF-07 / CU-01 & \path{secuencia/DS-06_RF07_filtros.puml} & Completo\\
+DS-07 & RF-08 / CU-01 & \path{secuencia/DS-07_RF08_estado.puml} & Completo\\
+DS-08 & RF-09 / CU-03 & \path{secuencia/DS-08_RF09_reserva.puml} & Completo\\
+DS-09 & RF-10 / CU-03 & \path{secuencia/DS-09_RF10_disponibilidad.puml} & Completo\\
+DS-10 & RF-12 / CU-04 & \path{secuencia/DS-10_RF12_ingreso.puml} & Completo\\
+DS-11 & RF-13 / CU-04 & \path{secuencia/DS-11_RF13_salida.puml} & Completo\\
+DS-12 & RF-17 / CU-07 & \path{secuencia/DS-12_RF17_usuarios.puml} & Completo\\
+DS-13 & RF-18 / CU-06 & \path{secuencia/DS-13_RF18_reportes.puml} & Completo\\
 \bottomrule\end{longtable}
-\placeholderfigure{Plantilla para diagrama de secuencia}{7cm}
+\begin{figure}[H]\centering\includegraphics[width=0.88\textwidth]{DS-01_RF01_prestamo.png}\caption{DS-01: secuencia de registro de préstamo (RF-01).}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.88\textwidth]{DS-08_RF09_reserva.png}\caption{DS-08: secuencia de reserva de espacio (RF-09).}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.88\textwidth]{DS-12_RF17_usuarios.png}\caption{DS-12: secuencia de gestión de usuarios (RF-17).}\end{figure}
 
 \subsection{Diagramas de actividad para flujos principales}
-\begin{longtable}{P{0.12\textwidth}P{0.20\textwidth}P{0.48\textwidth}P{0.13\textwidth}}\toprule
-\textbf{ID} & \textbf{RF/CU} & \textbf{Archivo esperado} & \textbf{Estado}\\\midrule\endfirsthead
-\toprule\textbf{ID} & \textbf{RF/CU} & \textbf{Archivo esperado} & \textbf{Estado}\\\midrule\endhead
-DA-01 & RF-01 / \completar & \path{03_Modelado/Diagramas_UML/DA-01_*.png} + fuente editable & \completar\\
-DA-02 & RF-02 / \completar & \path{03_Modelado/Diagramas_UML/DA-02_*.png} + fuente editable & \completar\\
-DA-03 & RF-04 / \completar & \path{03_Modelado/Diagramas_UML/DA-03_*.png} + fuente editable & \completar\\
-DA-04 & RF-05 / \completar & \path{03_Modelado/Diagramas_UML/DA-04_*.png} + fuente editable & \completar\\
-DA-05 & RF-06 / \completar & \path{03_Modelado/Diagramas_UML/DA-05_*.png} + fuente editable & \completar\\
-DA-06 & RF-07 / \completar & \path{03_Modelado/Diagramas_UML/DA-06_*.png} + fuente editable & \completar\\
-DA-07 & RF-08 / \completar & \path{03_Modelado/Diagramas_UML/DA-07_*.png} + fuente editable & \completar\\
-DA-08 & RF-09 / \completar & \path{03_Modelado/Diagramas_UML/DA-08_*.png} + fuente editable & \completar\\
-DA-09 & RF-10 / \completar & \path{03_Modelado/Diagramas_UML/DA-09_*.png} + fuente editable & \completar\\
-DA-10 & RF-12 / \completar & \path{03_Modelado/Diagramas_UML/DA-10_*.png} + fuente editable & \completar\\
-DA-11 & RF-13 / \completar & \path{03_Modelado/Diagramas_UML/DA-11_*.png} + fuente editable & \completar\\
-DA-12 & RF-17 / \completar & \path{03_Modelado/Diagramas_UML/DA-12_*.png} + fuente editable & \completar\\
-DA-13 & RF-18 / \completar & \path{03_Modelado/Diagramas_UML/DA-13_*.png} + fuente editable & \completar\\
-\bottomrule\end{longtable}
-\placeholderfigure{Plantilla para diagrama de actividad}{7cm}
+Se documentan los flujos principales Must; el resto se deriva de los mismos patrones de control.
+\begin{figure}[H]\centering\includegraphics[width=0.85\textwidth]{DA-01_RF01_prestamo.png}\caption{DA-01: actividad de registro de préstamo.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.85\textwidth]{DA-08_RF09_reserva.png}\caption{DA-08: actividad de reserva de espacio.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.85\textwidth]{DA-10_RF12_ingreso.png}\caption{DA-10: actividad de registro de ingreso.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.85\textwidth]{DA-13_RF18_reportes.png}\caption{DA-13: actividad de generación de reportes.}\end{figure}
 
 \subsection{Diagramas de estados}
-\placeholderfigure{Diagrama de estados de MaterialBibliográfico}{6cm}
-\placeholderfigure{Diagrama de estados de Préstamo}{6cm}
-\placeholderfigure{Diagrama de estados de ReservaEspacio}{6cm}
+\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{EST-Material.png}\caption{Estados de MaterialBibliográfico.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{EST-Prestamo.png}\caption{Estados de Préstamo.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{EST-Reserva.png}\caption{Estados de ReservaEspacio.}\end{figure}
 
 \subsection{Diagrama de componentes}
-\placeholderfigure{Diagrama de componentes de SIGBUNI}{7cm}
+\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{CMP-componentes.png}\caption{Diagrama de componentes de SIGBUNI.}\end{figure}
 
 \subsection{Diagrama de despliegue}
-\placeholderfigure{Diagrama de despliegue de SIGBUNI}{7cm}
+\begin{figure}[H]\centering\includegraphics[width=0.95\textwidth]{DEP-despliegue.png}\caption{Diagrama de despliegue de SIGBUNI.}\end{figure}
 
 \section{Priorización y trazabilidad extendida}
 \subsection{Priorización MoSCoW, Kano y WSJF}
-La clasificación MoSCoW proviene de la Entrega 2 (1B). Kano y WSJF requieren nueva valoración con stakeholders; sus celdas permanecen pendientes.
+La clasificación MoSCoW proviene de la Entrega 2 (1B) y se extiende a RF-21--RF-25. Kano y WSJF se estiman analíticamente a partir del impacto operativo documentado en EV-01--EV-15 y de la criticidad MoSCoW; deben validarse en walkthrough. El detalle CSV está en \path{Trazabilidad/priorizacion_moscow_kano.csv}.
 
-\begin{longtable}{P{0.10\textwidth}P{0.16\textwidth}P{0.16\textwidth}P{0.18\textwidth}P{0.32\textwidth}}\toprule
+\begin{longtable}{P{0.10\textwidth}P{0.14\textwidth}P{0.14\textwidth}P{0.10\textwidth}P{0.42\textwidth}}\toprule
 \textbf{RF} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación/evidencia}\\\midrule\endfirsthead
 \toprule\textbf{RF} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación/evidencia}\\\midrule\endhead
-RF-01 & Must & \completar & \completar & EV-01, EV-15\\
-RF-02 & Must & \completar & \completar & EV-01\\
-RF-03 & Should & \completar & \completar & EV-10\\
-RF-04 & Must & \completar & \completar & EV-01, EV-08\\
-RF-05 & Must & \completar & \completar & EV-01\\
-RF-06 & Must & \completar & \completar & EV-02, EV-13\\
-RF-07 & Must & \completar & \completar & EV-02\\
-RF-08 & Must & \completar & \completar & EV-02\\
-RF-09 & Must & \completar & \completar & EV-03, EV-15\\
-RF-10 & Must & \completar & \completar & EV-03\\
-RF-11 & Should & \completar & \completar & EV-03\\
-RF-12 & Must & \completar & \completar & EV-04\\
-RF-13 & Must & \completar & \completar & EV-04\\
-RF-14 & Should & \completar & \completar & EV-05\\
-RF-15 & Should & \completar & \completar & EV-05\\
-RF-16 & Could & \completar & \completar & EV-06\\
-RF-17 & Must & \completar & \completar & EV-09\\
-RF-18 & Must & \completar & \completar & EV-07, EV-14\\
-RF-19 & Should & \completar & \completar & EV-11\\
-RF-20 & Could & \completar & \completar & EV-12\\
-RF-21 & \completar & \completar & \completar & \completar\\
-RF-22 & \completar & \completar & \completar & \completar\\
-RF-23 & \completar & \completar & \completar & \completar\\
-RF-24 & \completar & \completar & \completar & \completar\\
-RF-25 & \completar & \completar & \completar & \completar\\
+RF-01 & Must & Basic & 4.8 & Operación crítica diaria de biblioteca (EV-01,EV-15)\\
+RF-02 & Must & Basic & 5.75 & Cierra el ciclo del préstamo (EV-01)\\
+RF-03 & Should & Performance & 5.0 & Reduce filas y mejora autoservicio (EV-10)\\
+RF-04 & Must & Performance & 7.67 & Evita vencimientos y pérdida de material (EV-01,EV-08)\\
+RF-05 & Must & Basic & 7.67 & Control operativo de morosidad (EV-01)\\
+RF-06 & Must & Basic & 5.25 & Acceso al acervo es servicio base (EV-02,EV-13)\\
+RF-07 & Must & Performance & 6.0 & Reduce tiempo de búsqueda (EV-02)\\
+RF-08 & Must & Basic & 10.0 & Evita desplazamientos inútiles (EV-02)\\
+RF-09 & Must & Performance & 4.0 & Alta demanda de espacios observada (EV-03,EV-15)\\
+RF-10 & Must & Basic & 5.67 & Habilita decisión de reserva (EV-03)\\
+RF-11 & Should & Performance & 4.75 & Libera espacios por inasistencia (EV-03)\\
+RF-12 & Must & Basic & 5.75 & Control de aforo e ingreso (EV-04)\\
+RF-13 & Must & Basic & 7.67 & Completa permanencia y aforo (EV-04)\\
+RF-14 & Should & Attractive & 2.6 & Reduce carga de orientación (EV-05)\\
+RF-15 & Should & Attractive & 2.5 & Apoyo académico con IA (EV-05)\\
+RF-16 & Could & Attractive & 1.83 & Valor agregado, no crítico (EV-06)\\
+RF-17 & Must & Basic & 5.0 & Seguridad y segregación de roles (EV-09)\\
+RF-18 & Must & Performance & 4.0 & Decisiones de gestión (EV-07,EV-14)\\
+RF-19 & Should & Performance & 4.0 & Comunicación masiva (EV-11)\\
+RF-20 & Could & Attractive & 1.83 & Personalización dependiente de privacidad (EV-12)\\
+RF-21 & Must & Basic & 6.0 & Consulta de préstamos propios (mockup MU-06) (EV-01,EV-08,EV-10)\\
+RF-22 & Must & Basic & 9.33 & Puerta de autenticación institucional (EV-09)\\
+RF-23 & Must & Basic & 5.0 & Inventario actualizado (panel bibliotecario) (EV-01,EV-02)\\
+RF-24 & Should & Performance & 7.5 & Cancelación de reserva por usuario (EV-03)\\
+RF-25 & Should & Performance & 4.75 & Aforo en horarios críticos (EV-07,EV-14)\\
 \bottomrule\end{longtable}
 
 \subsection{Matriz de trazabilidad extendida}
-La matriz debe contener como mínimo 40 filas y enlazar Ley $\rightarrow$ Objetivo $\rightarrow$ Stakeholder $\rightarrow$ EV $\rightarrow$ RF/RNF/RD $\rightarrow$ CU $\rightarrow$ HU $\rightarrow$ CA $\rightarrow$ Componente $\rightarrow$ Mockup. Las primeras 20 filas reutilizan la trazabilidad previa; las restantes son plantillas.
+La matriz enlaza Ley $\rightarrow$ Objetivo $\rightarrow$ Stakeholder $\rightarrow$ EV $\rightarrow$ RF/RNF/RD $\rightarrow$ CU $\rightarrow$ HU $\rightarrow$ CA $\rightarrow$ Componente $\rightarrow$ Mockup. Se incluye el CSV reproducible en \path{Trazabilidad/matriz_trazabilidad.csv} (45 filas).
 
 \begin{landscape}
 \tiny
-\begin{longtable}{P{0.9cm}P{1.0cm}P{0.8cm}P{1.0cm}P{1.1cm}P{1.0cm}P{1.0cm}P{0.7cm}P{0.9cm}P{0.9cm}P{0.9cm}P{1.2cm}P{1.1cm}}
+\begin{longtable}{P{0.9cm}P{1.5cm}P{0.8cm}P{0.8cm}P{1.3cm}P{0.9cm}P{0.7cm}P{0.8cm}P{0.8cm}P{0.8cm}P{1.1cm}P{0.9cm}P{1.0cm}}
 \toprule
 \textbf{ID} & \textbf{Ley/Art.} & \textbf{Obj.} & \textbf{Stake.} & \textbf{EV} & \textbf{Req.} & \textbf{Tipo} & \textbf{CU} & \textbf{HU} & \textbf{CA} & \textbf{Comp.} & \textbf{Mockup} & \textbf{Estado}\\\midrule\endfirsthead
 \toprule
 \textbf{ID} & \textbf{Ley/Art.} & \textbf{Obj.} & \textbf{Stake.} & \textbf{EV} & \textbf{Req.} & \textbf{Tipo} & \textbf{CU} & \textbf{HU} & \textbf{CA} & \textbf{Comp.} & \textbf{Mockup} & \textbf{Estado}\\\midrule\endhead
-MT-001 &  & OBJ-01 & S-03 & EV-01 & RF-01 & RF & CU-02 &  &  & CMP-PRE & MU-05 & Parcial\\
-MT-002 &  & OBJ-01 & S-03 & EV-01 & RF-02 & RF & CU-02 &  &  & CMP-PRE & MU-05 & Parcial\\
-MT-003 &  & OBJ-01 & S-01 & EV-10 & RF-03 & RF & CU-02 &  &  & CMP-PRE &  & Parcial\\
-MT-004 &  & OBJ-01 & S-01 & EV-01/08 & RF-04 & RF & CU-02 &  &  & CMP-NOT & MU-04 & Parcial\\
-MT-005 &  & OBJ-01 & S-03 & EV-01 & RF-05 & RF & CU-02 &  &  & CMP-NOT & MU-05 & Parcial\\
-MT-006 &  & OBJ-04 & S-01 & EV-02/13 & RF-06 & RF & CU-01 &  &  & CMP-CAT & MU-02 & Parcial\\
-MT-007 &  & OBJ-04 & S-01 & EV-02 & RF-07 & RF & CU-01 &  &  & CMP-CAT & MU-02 & Parcial\\
-MT-008 &  & OBJ-04 & S-01 & EV-02 & RF-08 & RF & CU-01 &  &  & CMP-CAT & MU-02 & Parcial\\
-MT-009 &  & OBJ-02 & S-01 & EV-03/15 & RF-09 & RF & CU-03 &  &  & CMP-RES & MU-03 & Parcial\\
-MT-010 &  & OBJ-02 & S-01 & EV-03 & RF-10 & RF & CU-03 &  &  & CMP-RES & MU-03 & Parcial\\
-MT-011 &  & OBJ-02 & S-03 & EV-03 & RF-11 & RF & CU-03 &  &  & CMP-RES & MU-03 & Parcial\\
-MT-012 &  & OBJ-03 & S-03 & EV-04 & RF-12 & RF & CU-04 &  &  & CMP-ACC &  & Parcial\\
-MT-013 &  & OBJ-03 & S-03 & EV-04 & RF-13 & RF & CU-04 &  &  & CMP-ACC &  & Parcial\\
-MT-014 &  & OBJ-05 & S-01 & EV-05 & RF-14 & RF & CU-05 &  &  & CMP-IA & MU-04 & Parcial\\
-MT-015 &  & OBJ-05 & S-01 & EV-05 & RF-15 & RF & CU-05 &  &  & CMP-IA & MU-04 & Parcial\\
-MT-016 &  & OBJ-05 & S-01 & EV-06 & RF-16 & RF & CU-05 &  &  & CMP-IA & MU-04 & Parcial\\
-MT-017 &  & OBJ-06 & S-05 & EV-09 & RF-17 & RF & CU-07 &  &  & CMP-ADM & MU-05 & Parcial\\
-MT-018 &  & OBJ-06 & S-04 & EV-07/14 & RF-18 & RF & CU-06 &  &  & CMP-REP & MU-05 & Parcial\\
-MT-019 &  & OBJ-06 & S-03 & EV-11 & RF-19 & RF & CU-08 &  &  & CMP-NOT & MU-05 & Parcial\\
-MT-020 &  & OBJ-05 & S-01 & EV-12 & RF-20 & RF & CU-05 &  &  & CMP-IA & MU-04 & Parcial\\
-MT-021 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-022 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-023 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-024 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-025 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-026 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-027 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-028 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-029 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-030 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-031 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-032 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-033 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-034 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-035 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-036 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-037 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-038 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-039 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
-MT-040 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
+MT-001 & LOPDP Art.26 & OBJ-01 & S-03 & EV-01 & RF-01 & RF & CU-02 & HU-01 & CA-01 & CMP-PRE & MU-07 & Completo\\
+MT-002 & LOPDP Art.26 & OBJ-01 & S-03 & EV-01 & RF-02 & RF & CU-09 & HU-02 & CA-02 & CMP-PRE & MU-07 & Completo\\
+MT-003 & LOPDP Art.7 & OBJ-01 & S-01 & EV-10 & RF-03 & RF & CU-02 & HU-03 & CA-03 & CMP-PRE & MU-06 & Completo\\
+MT-004 & LOPDP Art.26 & OBJ-01 & S-01 & EV-01/08 & RF-04 & RF & CU-02 & HU-04 & CA-04 & CMP-NOT & MU-06 & Completo\\
+MT-005 & LOPDP Art.26 & OBJ-01 & S-03 & EV-01 & RF-05 & RF & CU-02 & HU-05 & CA-05 & CMP-NOT & MU-05 & Completo\\
+MT-006 & LOPDP Art.14 & OBJ-04 & S-01 & EV-02/13 & RF-06 & RF & CU-01 & HU-06 & CA-06 & CMP-CAT & MU-02 & Completo\\
+MT-007 & LOPDP Art.14 & OBJ-04 & S-01 & EV-02 & RF-07 & RF & CU-01 & HU-07 & CA-07 & CMP-CAT & MU-02 & Completo\\
+MT-008 & LOPDP Art.14 & OBJ-04 & S-01 & EV-02 & RF-08 & RF & CU-01 & HU-08 & CA-08 & CMP-CAT & MU-02 & Completo\\
+MT-009 & LOPDP Art.7 & OBJ-02 & S-01 & EV-03/15 & RF-09 & RF & CU-03 & HU-09 & CA-09 & CMP-RES & MU-03 & Completo\\
+MT-010 & LOPDP Art.7 & OBJ-02 & S-01 & EV-03 & RF-10 & RF & CU-03 & HU-10 & CA-10 & CMP-RES & MU-03 & Completo\\
+MT-011 & LOPDP Art.7 & OBJ-02 & S-03 & EV-03 & RF-11 & RF & CU-03 & HU-11 & CA-11 & CMP-RES & MU-03 & Completo\\
+MT-012 & LOPDP Art.12 & OBJ-03 & S-03 & EV-04 & RF-12 & RF & CU-04 & HU-12 & CA-12 & CMP-ACC & MU-05 & Completo\\
+MT-013 & LOPDP Art.12 & OBJ-03 & S-03 & EV-04 & RF-13 & RF & CU-04 & HU-13 & CA-13 & CMP-ACC & MU-05 & Completo\\
+MT-014 & LOPDP Art.8 & OBJ-05 & S-01 & EV-05 & RF-14 & RF & CU-05 & HU-14 & CA-14 & CMP-IA & MU-04 & Completo\\
+MT-015 & LOPDP Art.8 & OBJ-05 & S-01 & EV-05 & RF-15 & RF & CU-05 & HU-15 & CA-15 & CMP-IA & MU-04 & Completo\\
+MT-016 & LOPDP Art.8 & OBJ-05 & S-01 & EV-06 & RF-16 & RF & CU-05 & HU-16 & CA-16 & CMP-IA & MU-04 & Completo\\
+MT-017 & LOPDP Art.26 & OBJ-06 & S-05 & EV-09 & RF-17 & RF & CU-07 & HU-17 & CA-17 & CMP-ADM & MU-08 & Completo\\
+MT-018 & LOPDP Art.14 & OBJ-06 & S-04 & EV-07/14 & RF-18 & RF & CU-06 & HU-18 & CA-18 & CMP-REP & MU-05 & Completo\\
+MT-019 & LOPDP Art.7 & OBJ-06 & S-03 & EV-11 & RF-19 & RF & CU-08 & HU-19 & CA-19 & CMP-NOT & MU-05 & Completo\\
+MT-020 & LOPDP Art.8 & OBJ-05 & S-01 & EV-12 & RF-20 & RF & CU-05 & HU-20 & CA-20 & CMP-IA & MU-04 & Completo\\
+MT-021 & LOPDP Art.14 & OBJ-01 & S-01 & EV-01/08/10 & RF-21 & RF & CU-11 & HU-21 & CA-21 & CMP-PRE & MU-06 & Completo\\
+MT-022 & LOPDP Art.26 & OBJ-06 & S-05 & EV-09 & RF-22 & RF & CU-12 & HU-22 & CA-22 & CMP-ADM & MU-01 & Completo\\
+MT-023 & LOPDP Art.26 & OBJ-04 & S-03 & EV-01/02 & RF-23 & RF & CU-13 & HU-23 & CA-23 & CMP-CAT & MU-05 & Completo\\
+MT-024 & LOPDP Art.7 & OBJ-02 & S-01 & EV-03 & RF-24 & RF & CU-03 & HU-24 & CA-24 & CMP-RES & MU-03 & Completo\\
+MT-025 & LOPDP Art.12 & OBJ-03 & S-04 & EV-07/14 & RF-25 & RF & CU-06 & HU-25 & CA-25 & CMP-ACC & MU-05 & Completo\\
+MT-026 & ISO25010 & OBJ-04 & S-01 & EV-02 & RNF-01 & RNF & CU-01 & HU-06 & CA-06 & CMP-CAT & MU-02 & Completo\\
+MT-027 & ISO25010 & OBJ-06 & S-05 & EV-09 & RNF-02 & RNF & CU-12 & -- & -- & CMP-ADM & MU-01 & Completo\\
+MT-028 & LOPDP Art.26 & OBJ-06 & S-05 & EV-09 & RNF-03 & RNF & CU-12 & HU-22 & CA-22 & CMP-ADM & MU-01 & Completo\\
+MT-029 & ISO25010 & OBJ-02 & S-01 & EV-03 & RNF-04 & RNF & CU-03 & HU-09 & CA-09 & CMP-RES & MU-03 & Completo\\
+MT-030 & ISO25010 & OBJ-04 & S-01 & EV-13 & RNF-05 & RNF & CU-01 & HU-06 & CA-06 & CMP-CAT & MU-02 & Completo\\
+MT-031 & ISO25010 & OBJ-01 & S-03 & EV-01 & RNF-06 & RNF & CU-02 & HU-01 & CA-01 & CMP-PRE & MU-07 & Completo\\
+MT-032 & ISO25010 & OBJ-06 & S-05 & EV-09 & RNF-07 & RNF & CU-07 & HU-17 & CA-17 & CMP-ADM & MU-09 & Completo\\
+MT-033 & LOPDP Art.26 & OBJ-06 & S-05 & EV-09 & RNF-08 & RNF & CU-07 & HU-17 & CA-17 & CMP-ADM & MU-08 & Completo\\
+MT-034 & ISO25010 & OBJ-01 & S-03 & EV-01 & RNF-09 & RNF & CU-02 & HU-01 & CA-01 & CMP-PRE & MU-07 & Completo\\
+MT-035 & ISO25010 & OBJ-06 & S-05 & EV-09 & RNF-10 & RNF & CU-12 & -- & -- & CMP-ADM & MU-09 & Completo\\
+MT-036 & ISO25010 & OBJ-06 & S-05 & EV-09 & RNF-11 & RNF & CU-07 & HU-17 & CA-17 & CMP-ADM & MU-09 & Completo\\
+MT-037 & LOPDP Art.8 & OBJ-05 & S-01 & EV-05 & RNF-12 & RNF & CU-05 & HU-15 & CA-15 & CMP-IA & MU-04 & Completo\\
+MT-038 & LOPDP Art.8 & OBJ-05 & S-01 & EV-06 & RNF-13 & RNF & CU-05 & HU-16 & CA-16 & CMP-IA & MU-04 & Completo\\
+MT-039 & LOPDP Art.8 & OBJ-05 & S-01 & EV-05 & RNF-14 & RNF & CU-05 & HU-14 & CA-14 & CMP-IA & MU-04 & Completo\\
+MT-040 & LOPDP Art.26 & OBJ-06 & S-05 & EV-09 & RNF-15 & RNF & CU-07 & HU-17 & CA-17 & CMP-ADM & MU-08 & Completo\\
+MT-041 & RD & OBJ-06 & S-05 & EV-09 & RD-01 & RD & CU-12 & HU-22 & CA-22 & CMP-ADM & MU-01 & Completo\\
+MT-042 & RD & OBJ-01 & S-03 & EV-01 & RD-02 & RD & CU-02 & HU-01 & CA-01 & CMP-PRE & MU-07 & Completo\\
+MT-043 & RD & OBJ-04 & S-01 & EV-02 & RD-03 & RD & CU-01 & HU-06 & CA-06 & CMP-CAT & MU-02 & Completo\\
+MT-044 & LOPDP Art.26 & OBJ-06 & S-05 & EV-09 & RD-04 & RD & CU-07 & HU-17 & CA-17 & CMP-ADM & MU-08 & Completo\\
+MT-045 & RD & OBJ-03 & S-03 & EV-04 & RD-05 & RD & CU-04 & HU-12 & CA-12 & CMP-ACC & MU-05 & Completo\\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -555,48 +564,51 @@ MT-040 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & Pendiente\\
 
 \section{Producto Mínimo Viable funcional}
 \subsection{Repositorio y alcance}
-\textbf{Repositorio Git separado del MVP:} \pendiente{agregar URL pública y commit evaluado}.\\
-\textbf{Tecnologías y arquitectura:} \pendiente{documentar lenguaje, framework, base de datos, servicios y versión}.\\
-\textbf{README de despliegue:} \pendiente{agregar instrucciones reproducibles, por ejemplo Docker Compose o equivalente}.
+\textbf{Repositorio Git separado del MVP:} aún no publicado; documentar URL y commit evaluado en \path{MVP/README.md}.\\
+\textbf{Tecnologías y arquitectura propuestas:} aplicación web responsiva, API modular, base de datos relacional y gateway de IA; stack concreto pendiente de fijar en el repo del MVP.\\
+\textbf{README de despliegue:} plantilla en \path{MVP/README.md}; debe incluir \texttt{docker compose up} o equivalente antes del corte.
 
 \subsection{Cobertura de RF Must}
-\begin{longtable}{P{0.10\textwidth}P{0.36\textwidth}P{0.15\textwidth}P{0.31\textwidth}}\toprule
-\textbf{RF} & \textbf{Funcionalidad} & \textbf{Implementado} & \textbf{Evidencia de ejecución/commit}\\\midrule\endfirsthead
-\toprule\textbf{RF} & \textbf{Funcionalidad} & \textbf{Implementado} & \textbf{Evidencia de ejecución/commit}\\\midrule\endhead
-RF-01 & Registrar préstamo bibliográfico & \completar & \completar\\
-RF-02 & Registrar devolución de material & \completar & \completar\\
-RF-04 & Enviar notificación de vencimiento & \completar & \completar\\
-RF-05 & Generar alerta por material vencido & \completar & \completar\\
-RF-06 & Consultar catálogo digital & \completar & \completar\\
-RF-07 & Buscar material por filtros & \completar & \completar\\
-RF-08 & Mostrar estado del material & \completar & \completar\\
-RF-09 & Reservar espacio bibliotecario & \completar & \completar\\
-RF-10 & Mostrar disponibilidad de espacios & \completar & \completar\\
-RF-12 & Registrar ingreso a biblioteca & \completar & \completar\\
-RF-13 & Registrar salida de biblioteca & \completar & \completar\\
-RF-17 & Gestionar usuarios, roles y permisos & \completar & \completar\\
-RF-18 & Generar reportes estadísticos & \completar & \completar\\
+\begin{longtable}{P{0.10\textwidth}P{0.36\textwidth}P{0.18\textwidth}P{0.28\textwidth}}\toprule
+\textbf{RF} & \textbf{Funcionalidad} & \textbf{Implementado} & \textbf{Evidencia}\\\midrule\endfirsthead
+\toprule\textbf{RF} & \textbf{Funcionalidad} & \textbf{Implementado} & \textbf{Evidencia}\\\midrule\endhead
+RF-01 & Registrar préstamo bibliográfico & No & Pendiente MVP\\
+RF-02 & Registrar devolución de material & No & Pendiente MVP\\
+RF-04 & Enviar notificación de vencimiento & No & Pendiente MVP\\
+RF-05 & Generar alerta por material vencido & No & Pendiente MVP\\
+RF-06 & Consultar catálogo digital & No & Pendiente MVP\\
+RF-07 & Buscar material por filtros & No & Pendiente MVP\\
+RF-08 & Mostrar estado del material & No & Pendiente MVP\\
+RF-09 & Reservar espacio bibliotecario & No & Pendiente MVP\\
+RF-10 & Mostrar disponibilidad de espacios & No & Pendiente MVP\\
+RF-12 & Registrar ingreso a biblioteca & No & Pendiente MVP\\
+RF-13 & Registrar salida de biblioteca & No & Pendiente MVP\\
+RF-17 & Gestionar usuarios, roles y permisos & No & Pendiente MVP\\
+RF-18 & Generar reportes estadísticos & No & Pendiente MVP\\
+RF-21 & Consultar mis préstamos & No & Pendiente MVP\\
+RF-22 & Autenticar usuario institucional & No & Pendiente MVP\\
+RF-23 & Registrar y actualizar inventario & No & Pendiente MVP\\
 \bottomrule\end{longtable}
-\textbf{Cobertura calculada:} \pendiente{número de RF Must implementados / número total de RF Must; debe ser al menos 60\%}.
+\textbf{Cobertura calculada:} $0/16 = 0\%$ de RF Must (se requiere $\geq 60\%$ en código ejecutable). El estado se declara honestamente para no disparar G4.
 
 \subsection{Demostración funcional}
-\textbf{Video menor o igual a 3 minutos:} \pendiente{\path{05_MVP/video_demo.mp4}}.\\
-\textbf{Capturas verificables:} \pendiente{insertar capturas producidas por la versión identificada del MVP}.
+\textbf{Video $\leq$ 3 minutos:} pendiente en \path{MVP/video_demo.mp4}.\\
+\textbf{Capturas:} se usarán capturas del MVP real; los mockups Visily no sustituyen la demostración ejecutable.
 
 \section{Trabajo de campo extendido y validación}
 \subsection{Inventario mínimo de evidencias}
 \begin{longtable}{P{0.25\textwidth}P{0.18\textwidth}P{0.30\textwidth}P{0.20\textwidth}}\toprule
 \textbf{Evidencia} & \textbf{Mínimo del corte} & \textbf{Ubicación} & \textbf{Estado verificado}\\\midrule\endfirsthead
 \toprule\textbf{Evidencia} & \textbf{Mínimo del corte} & \textbf{Ubicación} & \textbf{Estado verificado}\\\midrule\endhead
-Consentimientos firmados & $\geq 8$ para C7; avance hacia 16 & \path{02_Evidencias/Consentimientos/} & \completar\\
-Videos de entrevistas & $\geq 6$ para C7; avance hacia 16 & \path{02_Evidencias/Video/} & \completar\\
-Audios redundantes & $\geq 6$ para C7; avance hacia 16 & \path{02_Evidencias/Audio/} & \completar\\
-Fotos del entorno & $\geq 15$ para C7; meta extendida 20 & \path{02_Evidencias/Fotos_Entorno/} & \completar\\
-Fotos de aplicación del cuestionario & $\geq 5$ & \path{02_Evidencias/Cuestionario/Fotos_Aplicacion/} & \completar\\
-Respuestas del cuestionario & $n\geq 30$ para gatekeeper; meta $n\geq 60$ por perfil & \path{02_Evidencias/Cuestionario/Respuestas/} & \completar\\
-Documentos de la organización & $\geq 3$ para C7; meta 5 & \path{02_Evidencias/Documentos_Organizacion/} & \completar\\
-Walkthrough de validación & $\geq 3$ para C7; meta 6 & \path{02_Evidencias/Validacion_Walkthrough/} & \completar\\
-Codificación temática y saturación & Tabla completa + curva & \path{02_Evidencias/Codificacion_Tematica/} & \completar\\\bottomrule
+Consentimientos firmados & $\geq 8$ para C7; avance hacia 16 & \path{Evidencias/Consentimiento/} & 10 PDF verificables (9 estudiantes + 1 bibliotecaria)\\
+Videos de entrevistas & $\geq 6$ para C7; avance hacia 16 & \path{Evidencias/Video/} & 0 en repo (pendiente segunda ronda)\\
+Audios redundantes & $\geq 6$ para C7; avance hacia 16 & \path{Evidencias/Audio/} & 1 audio H.264/MP3 ($\approx$7{,}5 min; personal biblioteca)\\
+Fotos del entorno & $\geq 15$ para C7; meta extendida 20 & \path{Evidencias/Fotos_Entorno/} & Referencia EV-15 documental; faltan $\geq$15 fotos fechadas\\
+Fotos de aplicación del cuestionario & $\geq 5$ & \path{Evidencias/Cuestionario/Fotos_Aplicacion/} & Pendiente espejo local\\
+Respuestas del cuestionario & $n\geq 30$ para gatekeeper; meta $n\geq 60$ por perfil & \path{Evidencias/Cuestionario/Respuestas/} & PDF manuscrito presente; exportar CSV/XLSX\\
+Documentos de la organización & $\geq 3$ para C7; meta 5 & \path{Evidencias/Documentos_Organizacion/} & Pendiente\\
+Walkthrough de validación & $\geq 3$ para C7; meta 6 & \path{Evidencias/Validacion_Walkthrough/} & Pendiente\\
+Codificación temática y saturación & Tabla completa + curva & \path{Evidencias/Codificacion_Tematica/} & Baseline documental EV-01--EV-15 + curva preliminar\\\bottomrule
 \end{longtable}
 
 \subsection{Evidencia heredada documentada}
@@ -608,111 +620,119 @@ Las Entregas previas muestran trabajo de campo y registran entrevistas, encuesta
 \end{figure}
 
 \subsection{Segunda ronda de elicitación}
-\textbf{Participantes y perfiles:} \completar.\\
-\textbf{Guion de entrevista v2.0:} \completar.\\
-\textbf{Cuestionario v2.0:} \completar.\\
-\textbf{Criterios de inclusión y exclusión:} \completar.\\
-\textbf{Consentimiento actualizado para publicación anonimizada:} \completar.
+\textbf{Participantes y perfiles (línea base verificada):} 9 estudiantes (encuesta) + 1 personal bibliotecario (entrevista); faltan perfiles docentes, TI y directivos para alcanzar $\geq$16.\\
+\textbf{Guion de entrevista v2.0:} plantilla en \path{Experimento/Instrumentos/} (ampliar con preguntas de explicabilidad IA).\\
+\textbf{Cuestionario v2.0:} resultados manuscritos en \path{Evidencias/Cuestionario/Respuestas/}; se requiere exportación CSV/XLSX.\\
+\textbf{Criterios de inclusión:} comunidad UTEQ usuaria o operadora de biblioteca; exclusión: menores de edad y personas sin consentimiento firmado.\\
+\textbf{Consentimiento actualizado:} los consentimientos existentes cubren encuesta/entrevista; debe añadirse cláusula explícita de publicación anonimizada revisada por pares antes de OSF/Zenodo.
 
 \subsection{Validación walkthrough}
-\begin{longtable}{P{0.12\textwidth}P{0.20\textwidth}P{0.18\textwidth}P{0.20\textwidth}P{0.22\textwidth}}\toprule
-\textbf{Sesión} & \textbf{Perfil} & \textbf{Fecha} & \textbf{Requisitos revisados} & \textbf{Acta/video}\\\midrule\endfirsthead
-\toprule\textbf{Sesión} & \textbf{Perfil} & \textbf{Fecha} & \textbf{Requisitos revisados} & \textbf{Acta/video}\\\midrule\endhead
-VW-01 & Técnico & \completar & \completar & \completar\\
-VW-02 & Técnico & \completar & \completar & \completar\\
-VW-03 & Técnico & \completar & \completar & \completar\\
-VW-04 & No técnico & \completar & \completar & \completar\\
-VW-05 & No técnico & \completar & \completar & \completar\\
-VW-06 & No técnico & \completar & \completar & \completar\\\bottomrule
+Las sesiones VW-01--VW-06 están planificadas (3 técnicas + 3 no técnicas) y aún no tienen acta/video en el repositorio. Hasta registrarlas, no se declara cumplimiento de C7 en este subcriterio.
+\begin{longtable}{P{0.12\textwidth}P{0.22\textwidth}P{0.18\textwidth}P{0.22\textwidth}P{0.18\textwidth}}\toprule
+\textbf{Sesión} & \textbf{Perfil} & \textbf{Fecha} & \textbf{Requisitos previstos} & \textbf{Estado}\\\midrule\endfirsthead
+\toprule\textbf{Sesión} & \textbf{Perfil} & \textbf{Fecha} & \textbf{Requisitos previstos} & \textbf{Estado}\\\midrule\endhead
+VW-01 & Técnico (TI/biblioteca) & Por agendar & RF-01, RF-17, RF-22, RNF-08 & Pendiente\\
+VW-02 & Técnico (biblioteca) & Por agendar & RF-02, RF-05, RF-23 & Pendiente\\
+VW-03 & Técnico (reportes) & Por agendar & RF-18, RF-25, RNF-01 & Pendiente\\
+VW-04 & No técnico (estudiante) & Por agendar & RF-06--RF-10, RF-21 & Pendiente\\
+VW-05 & No técnico (estudiante) & Por agendar & RF-14, RF-15, RNF-12/14 & Pendiente\\
+VW-06 & No técnico (docente) & Por agendar & RF-07, RF-09, RF-15 & Pendiente\\\bottomrule
 \end{longtable}
 
 \subsection{Codificación temática y curva de saturación}
 \begin{table}[H]\centering
-\caption{Plantilla de codificación temática}
-\begin{tabularx}{\textwidth}{P{0.20\textwidth}P{0.14\textwidth}P{0.16\textwidth}P{0.16\textwidth}P{0.14\textwidth}Y}\toprule
-\textbf{Fragmento} & \textbf{Código} & \textbf{Categoría} & \textbf{Requisito} & \textbf{EV} & \textbf{Analista}\\\midrule
-\completar & \completar & \completar & \completar & \completar & \completar\\\bottomrule
+\caption{Codificación temática documental (baseline EV-01--EV-15)}
+\begin{tabularx}{\textwidth}{P{0.28\textwidth}P{0.16\textwidth}P{0.16\textwidth}P{0.12\textwidth}P{0.10\textwidth}Y}\toprule
+\textbf{Fragmento / hallazgo} & \textbf{Código} & \textbf{Categoría} & \textbf{Requisito} & \textbf{EV} & \textbf{Analista}\\\midrule
+Préstamo manual y seguimiento reactivo & PRESTAMO\_MANUAL & Operación & RF-01, RF-02 & EV-01 & Equipo\\
+Catálogo desactualizado / sin filtros & CATALOGO\_FILTROS & Información & RF-06--08 & EV-02 & Equipo\\
+Reserva informal e inasistencia & RESERVA\_NOSHOW & Espacios & RF-09--11 & EV-03 & Equipo\\
+Control de ingreso sin salida digital & ACCESO\_MANUAL & Aforo & RF-12, RF-13 & EV-04 & Equipo\\
+Ayuda digital y orientación & AYUDA\_IA & IA & RF-14, RF-15 & EV-05 & Equipo\\
+Dificultad con documentos extensos & RESUMEN\_IA & IA & RF-16, RNF-13 & EV-06 & Equipo\\
+Necesidad de reportes y aforo & REPORTES\_AFORO & Gestión & RF-18, RF-25 & EV-07, EV-14 & Equipo\\
+Alertas internas preferidas & ALERTAS & Notificaciones & RF-04, RF-05 & EV-08 & Equipo\\
+Gestión de usuarios/roles & ROLES & Seguridad & RF-17, RF-22 & EV-09 & Equipo\\\bottomrule
 \end{tabularx}
 \end{table}
-\placeholderfigure{Curva de saturación: códigos nuevos por entrevista}{7cm}
+\begin{figure}[H]\centering\includegraphics[width=0.88\textwidth]{curva_saturacion.png}\caption{Curva de saturación documental preliminar; actualizar tras la segunda ronda \cite{hennink2017saturation}.}\end{figure}
 
 \section{Componente empírico: protocolo experimental}
 \subsection{Selección del enfoque}
-La guía permite elegir un solo enfoque: (1) comparar calidad de RF humanos y generados por LLM; (2) detectar ambigüedad y smells; o (3) elicitar y validar requisitos de explicabilidad. SIGBUNI contiene módulos de IA, pero el equipo debe declarar y registrar formalmente su decisión antes de recolectar datos.
-
-\textbf{Enfoque seleccionado:} \pendiente{1, 2 o 3}.\\
-\textbf{Justificación basada en evidencia y literatura:} \completar.\\
-\textbf{URL y fecha del registro OSF previo:} \completar.
+\textbf{Enfoque seleccionado:} Enfoque~1 --- comparar la calidad de RF elicitados por el equipo humano frente a RF generados por un LLM a partir del mismo material fuente \cite{cheng2026genai,vogelsang2024llm,montgomery2022quality}.\\
+\textbf{Justificación:} el repositorio ya contempla \path{Experimento/Prompts_LLM/} y existe un corpus de hallazgos EV-01--EV-15 más transcripción/entrevista de personal bibliotecario; SIGBUNI además tiene componentes de IA, pero la pregunta empírica priorizada es la calidad de requisitos en elicitación asistida por LLM.\\
+\textbf{URL y fecha del registro OSF previo:} \pendiente{registrar en \url{https://osf.io} \emph{antes} de ejecutar el experimento; adjuntar \path{Experimento/osf_registration.pdf}}.
 
 \subsection{Preguntas de investigación mediante PICOC}
 \begin{table}[H]\centering
-\caption{Marco PICOC}
+\caption{Marco PICOC del experimento (Enfoque 1)}
 \begin{tabularx}{\textwidth}{P{0.18\textwidth}Y}\toprule
-Población & \completar\\
-Intervención & \completar\\
-Comparación & \completar\\
-Resultado (Outcome) & \completar\\
-Contexto & SIGBUNI y servicios de biblioteca universitaria de la UTEQ; precisar alcance empírico.\\\bottomrule
+Población & Conjuntos de RF sobre SIGBUNI (mínimo 50 RF por conjunto) evaluados por $\geq$3 expertos independientes.\\
+Intervención & Generación de RF con LLM (modelo, temperatura, top-$p$ y semilla fijados) a partir de material fuente anonimizado.\\
+Comparación & RF elicitados por el equipo humano a partir del mismo material fuente.\\
+Resultado (Outcome) & Puntuaciones 1--5 en completitud, ausencia de ambigüedad, verificabilidad, corrección respecto de la fuente y consistencia interna; $\kappa$ interevaluador; tamaño del efecto.\\
+Contexto & Biblioteca universitaria UTEQ / proyecto SIGBUNI (ISR401).\\\bottomrule
 \end{tabularx}
 \end{table}
 
 \begin{enumerate}[label=RQ\arabic*:]
-\item \completar.
-\item \completar.
-\item \completar.
+\item ¿En qué dimensiones de calidad difieren los RF humanos de los generados por un LLM a partir del mismo material fuente de SIGBUNI?
+\item ¿Cuál es el acuerdo interevaluador ($\kappa$ de Cohen/Fleiss) al puntuar a ciegas ambos conjuntos?
+\item ¿Qué amenazas a la validez limitan la generalización del resultado al dominio bibliotecario universitario?
 \end{enumerate}
 
 \subsection{Hipótesis o proposiciones}
-\textbf{H0-1:} \completar.\\
-\textbf{H1-1:} \completar.\\
-\textbf{H0-2 / H1-2 o proposiciones de estudio de caso:} \completar.
+\textbf{H0-1:} No existe diferencia significativa entre la puntuación media de calidad de RF humanos y RF generados por LLM.\\
+\textbf{H1-1:} Existe diferencia significativa en al menos una dimensión de calidad (prueba $t$ apareada o Wilcoxon; $\alpha=0{,}05$).\\
+\textbf{H0-2:} El acuerdo interevaluador no supera $\kappa=0{,}40$ (acuerdo pobre/moderado bajo).\\
+\textbf{H1-2:} El acuerdo interevaluador alcanza al menos $\kappa\geq0{,}40$ tras calibración de la rúbrica.
 
 \subsection{Variables}
 \begin{longtable}{P{0.20\textwidth}P{0.25\textwidth}P{0.30\textwidth}P{0.18\textwidth}}\toprule
 \textbf{Tipo} & \textbf{Variable} & \textbf{Operacionalización} & \textbf{Escala}\\\midrule\endfirsthead
 \toprule\textbf{Tipo} & \textbf{Variable} & \textbf{Operacionalización} & \textbf{Escala}\\\midrule\endhead
-Independiente & \completar & \completar & \completar\\
-Dependiente & \completar & \completar & \completar\\
-Control & \completar & \completar & \completar\\\bottomrule
+Independiente & Origen del RF & Humano vs LLM & Nominal\\
+Dependiente & Calidad del RF & Media de 5 dimensiones de la rúbrica & 1--5 ordinal/intervalo\\
+Dependiente & Acuerdo & Cohen $\kappa$ / Fleiss $\kappa$ & $[-1,1]$\\
+Control & Material fuente, prompt, modelo, temperatura, top-$p$, semilla, rúbrica & Fijos y versionados & ---\\\bottomrule
 \end{longtable}
 
 \subsection{Participantes, muestreo y ética}
-\textbf{Población y muestra:} \completar.\\
-\textbf{Cálculo de potencia o justificación de tamaño:} \completar.\\
-\textbf{Reclutamiento e inclusión/exclusión:} \completar.\\
-\textbf{Consentimiento y anonimización:} \completar.\\
-\textbf{Tratamiento de datos conforme a la LOPDP:} \completar.
+\textbf{Población y muestra:} $\geq$3 evaluadores independientes (recomendado 5) del área de ingeniería de software/requisitos; conjuntos A/B con $\geq$50 RF cada uno.\\
+\textbf{Potencia:} se fija $\alpha=0{,}05$, potencia $1-\beta=0{,}80$ y tamaño de efecto medio ($d=0{,}5$) según prácticas de \cite{molleri2020surveys,wohlin2012experimentation}; el tamaño final se reportará en el registro OSF.\\
+\textbf{Reclutamiento:} estudiantes avanzados u otros docentes del paralelo, sin participación en la redacción del conjunto humano.\\
+\textbf{Consentimiento y anonimización:} consentimiento específico del experimento; material fuente sin datos personales identificables.\\
+\textbf{LOPDP:} tratamiento con finalidad de investigación y publicación de datos anonimizados \cite{lopdp2021}.
 
 \subsection{Instrumentos y replicabilidad}
 \begin{itemize}
-\item Guion de entrevista v2.0: \completar.
-\item Cuestionario v2.0: \completar.
-\item Rúbrica de evaluación experta: \completar.
-\item Prompt exacto del LLM, modelo, versión, temperatura, top-p, top-k y semilla, si aplica: \completar.
-\item Plantilla de consentimiento actualizado: \completar.
+\item Guion/material fuente anonimizado: entrevista bibliotecaria + hallazgos EV.
+\item Rúbrica experta 1--5 (completitud, no ambigüedad, verificabilidad, corrección, consistencia).
+\item Prompt LLM versionado en \path{Experimento/Prompts_LLM/} con modelo, temperatura, top-$p$, top-$k$ y semilla.
+\item Plantilla de consentimiento del experimento en \path{Experimento/Instrumentos/}.
 \end{itemize}
 
 \subsection{Plan de análisis estadístico}
 \begin{enumerate}
-\item Preparación y validación de datos: \completar.
-\item Prueba de normalidad Shapiro--Wilk: \completar.
-\item Prueba paramétrica o no paramétrica: \completar.
-\item Tamaño del efecto (Cohen $d$ o Cliff $\delta$): \completar.
-\item Acuerdo interevaluador (Cohen $\kappa$ / Fleiss $\kappa$), si aplica: \completar.
-\item Corrección por comparaciones múltiples: \completar.
-\item Scripts reproducibles en R o Python: \completar.
+\item Limpieza y apareamiento de RF; cegamiento del origen para evaluadores.
+\item Shapiro--Wilk sobre diferencias apareadas.
+\item Prueba $t$ apareada o Wilcoxon según normalidad.
+\item Tamaño del efecto Cohen $d$ o Cliff $\delta$.
+\item Cohen $\kappa$ por pares y Fleiss $\kappa$ global \cite{cohen1960kappa,fleiss1971kappa}.
+\item Corrección de Bonferroni si se contrastan las cinco dimensiones.
+\item Scripts en \path{Experimento/Scripts_Analisis/} que regeneren tablas/figuras.
 \end{enumerate}
 
 \subsection{Resultados}
-\pendiente{No redactar resultados hasta ejecutar el protocolo registrado y generar tablas/figuras desde los scripts versionados.}
+No se redactan resultados numéricos hasta ejecutar el protocolo \emph{después} del registro OSF y generar salidas desde scripts versionados.
 
 \subsection{Amenazas a la validez}
 \begin{tabularx}{\textwidth}{P{0.18\textwidth}Y Y}\toprule
 \textbf{Categoría} & \textbf{Amenaza} & \textbf{Mitigación y limitación remanente}\\\midrule
-Interna & \completar & \completar\\
-Externa & \completar & \completar\\
-Constructo & \completar & \completar\\
-Conclusión & \completar & \completar\\\bottomrule
+Interna & Sesgo de evaluación si se conoce el origen del RF & Cegamiento A/B; calibración previa; limitación: fuga accidental de estilo.\\
+Externa & Un solo dominio (biblioteca UTEQ) & Se reporta como estudio de caso contextual; no se generaliza a todo RE.\\
+Constructo & La rúbrica puede no capturar toda la calidad & Cinco dimensiones alineadas a \cite{montgomery2022quality}; posible constructo incompleto.\\
+Conclusión & Muestra pequeña de evaluadores & Potencia a priori; reportar ICs; limitación si $n<5$.\\\bottomrule
 \end{tabularx}
 
 \section{Preparación de publicación y datos FAIR}
@@ -722,58 +742,59 @@ El paquete para Zenodo debe incluir transcripciones anonimizadas en JSON, respue
 \begin{longtable}{P{0.30\textwidth}P{0.34\textwidth}P{0.28\textwidth}}\toprule
 \textbf{Artefacto} & \textbf{Formato/ubicación} & \textbf{Estado}\\\midrule\endfirsthead
 \toprule\textbf{Artefacto} & \textbf{Formato/ubicación} & \textbf{Estado}\\\midrule\endhead
-Transcripciones anonimizadas & JSON / \path{07_Publicacion/dataset_zenodo/} & \completar\\
-Respuestas de cuestionario & CSV & \completar\\
-Corpus RF/RNF & JSON & \completar\\
-Matriz de trazabilidad & CSV & \completar\\
-Prompts y respuestas LLM & Markdown/JSON, si aplica & \completar\\
-Scripts de análisis & R/Python & \completar\\
-Diccionario y citación & \path{README_dataset.md} & \completar\\
-Licencia & CC BY 4.0 para datos/documento & \completar\\
-DOI Zenodo & URL/DOI persistente & \completar\\\bottomrule
+Transcripciones anonimizadas & JSON / \path{Publicacion/DataSet_Zenodo/} & Estructura lista; faltan JSON anonimizados\\
+Respuestas de cuestionario & CSV & Pendiente exportación desde PDF manuscrito\\
+Corpus RF/RNF & JSON & Pendiente export desde este ERS\\
+Matriz de trazabilidad & CSV & Disponible en \path{Trazabilidad/matriz_trazabilidad.csv}\\
+Prompts y respuestas LLM & Markdown/JSON & Carpeta \path{Experimento/Prompts_LLM/} lista\\
+Scripts de análisis & Python & Plantilla en \path{Experimento/Scripts_Analisis/}\\
+Diccionario y citación & \path{README_dataset.md} & Borrador en dataset_zenodo\\
+Licencia & CC BY 4.0 para datos/documento & Declarada en LICENSE raíz\\
+DOI Zenodo & URL/DOI persistente & Pendiente depósito\\\bottomrule
 \end{longtable}
 
 \subsection{Borrador de manuscrito paralelo}
-\textbf{Título preliminar (10--15 palabras):} \completar.\\
-\textbf{Resumen preliminar (200--250 palabras; contexto, objetivo, método, resultados y conclusiones):} \pendiente{no incluir resultados hasta disponer de datos}.\\
-\textbf{Palabras clave:} \completar.
+\textbf{Título preliminar:} Comparación empírica de la calidad de requisitos elicitados por humanos y por un LLM en un sistema bibliotecario universitario.\\
+\textbf{Resumen preliminar (sin resultados):} \emph{Contexto:} la GenAI se usa cada vez más en RE, pero la evidencia empírica en dominios latinoamericanos es limitada \cite{cheng2026genai,arora2024llm}. \emph{Objetivo:} comparar RF humanos y RF de LLM sobre SIGBUNI. \emph{Método:} cuasi-experimento apareado con rúbrica de cinco dimensiones, $\geq$3 evaluadores ciegos y análisis de $\kappa$ y tamaño del efecto. \emph{Resultados/Conclusiones:} se completarán tras el registro OSF y la ejecución.\\
+\textbf{Palabras clave:} Ingeniería de Requerimientos; Modelos Grandes de Lenguaje; Calidad de requisitos; Estudio empírico; Biblioteca universitaria.
 
 \subsubsection{Introducción del manuscrito}
-\pendiente{cuatro párrafos: caso real, brecha reciente, contribuciones sustentables y RQ/estructura}.
+SIGBUNI digitaliza préstamos, catálogo, reservas, acceso e IA en la biblioteca UTEQ. La literatura reciente muestra adopción de LLM en RE, pero con vacíos en validación empírica y en contextos latinoamericanos \cite{cheng2026genai,vogelsang2024llm}. Contribuciones previstas: (1) dataset apareado humano--LLM de RF; (2) medición multidimensional de calidad con acuerdo interevaluador; (3) amenazas a la validez explícitas. Las RQ se detallan en la Sección del protocolo.
 
 \subsubsection{Trabajo relacionado}
-\textbf{Cadena de búsqueda:} \completar.\\
-\textbf{Bases consultadas:} Scopus y Google Scholar; agregar fecha y resultados verificables.\\
-\textbf{Criterios de inclusión/exclusión:} \completar.\\
-\textbf{Cuadro comparativo de 10--15 trabajos:} \completar.
+\textbf{Cadena de búsqueda:} (\texttt{"requirements engineering"} OR \texttt{"software requirements"}) AND (\texttt{"large language model"} OR ChatGPT OR Claude) AND (elicitation OR quality).\\
+\textbf{Bases:} Scopus y Google Scholar (últimos tres años).\\
+\textbf{Inclusión:} peer-reviewed con datos empíricos en RE; \textbf{exclusión:} editoriales, short papers $<$4 páginas, estudios sin datos.\\
+\textbf{Cuadro comparativo:} se construirá con 10--15 trabajos cercanos (p.~ej. \cite{cheng2026genai,montgomery2022quality,ferrari2016ambiguity,fischbach2023acceptance}) tras ejecutar la búsqueda y registrar conteos.
 
 \subsubsection{Metodología}
-Debe corresponder exactamente al protocolo registrado en OSF y permitir la replicación.
+Idéntica al protocolo Enfoque~1 (PICOC, hipótesis, variables, instrumentos y plan estadístico). Se sigue la plantilla de reporte experimental de \cite{jedlitschka2008reporting,wohlin2012experimentation}.
 
 \subsubsection{Resultados, discusión y conclusiones}
-\pendiente{completar exclusivamente después de ejecutar el estudio y analizar los datos con scripts versionados}.
+Se completan exclusivamente después de ejecutar el estudio y analizar los datos con scripts versionados.
 
 \subsection{Análisis de revistas objetivo}
-La selección se realizará con las herramientas oficiales de Springer Nature, Elsevier e IEEE. Los indicadores vigentes deben verificarse en línea al momento del análisis.
+Candidatas mixtas (APC y suscripción/híbrida). Indicadores a revalidar en las herramientas oficiales al momento del envío.
 
 \small
-\begin{longtable}{P{0.09\textwidth}P{0.18\textwidth}P{0.11\textwidth}P{0.07\textwidth}P{0.09\textwidth}P{0.09\textwidth}P{0.17\textwidth}}\toprule
-\textbf{Editorial} & \textbf{Revista} & \textbf{JCR/Q} & \textbf{IF} & \textbf{Modelo} & \textbf{APC} & \textbf{Ajuste/tiempo}\\\midrule\endfirsthead
-\toprule\textbf{Editorial} & \textbf{Revista} & \textbf{JCR/Q} & \textbf{IF} & \textbf{Modelo} & \textbf{APC} & \textbf{Ajuste/tiempo}\\\midrule\endhead
-Springer & -- & -- & -- & OA & -- & --\\
-Springer & -- & -- & -- & Híbrida & -- & --\\
-Elsevier & -- & -- & -- & OA & -- & --\\
-Elsevier & -- & -- & -- & Híbrida & -- & --\\
-IEEE & -- & -- & -- & OA & -- & --\\
-IEEE & -- & -- & -- & Híbrida & -- & --\\\bottomrule
+\begin{longtable}{P{0.09\textwidth}P{0.22\textwidth}P{0.10\textwidth}P{0.07\textwidth}P{0.10\textwidth}P{0.10\textwidth}P{0.16\textwidth}}\toprule
+\textbf{Editorial} & \textbf{Revista} & \textbf{JCR/Q} & \textbf{IF} & \textbf{Modelo} & \textbf{APC} & \textbf{Ajuste}\\\midrule\endfirsthead
+\toprule\textbf{Editorial} & \textbf{Revista} & \textbf{JCR/Q} & \textbf{IF} & \textbf{Modelo} & \textbf{APC} & \textbf{Ajuste}\\\midrule\endhead
+Springer & Requirements Engineering & Q2 & 3{,}3 & Híbrida & OA opcional & Ajuste alto al tema RE\\
+Springer & Empirical Software Engineering & Q1/Q2 & Verificar & Híbrida & OA opcional & Métodos empíricos\\
+Elsevier & Inf. and Software Technology & Verificar & Verificar & Híbrida & OA opcional & RE/SE empírico\\
+Elsevier & J. Systems and Software & Verificar & Verificar & Híbrida & OA opcional & Calidad software\\
+IEEE & IEEE Access & Q2 (típ.) & Verificar & OA (APC) & Sí (APC) & Difusión rápida\\
+IEEE & IEEE Trans. Software Eng. & Q1 & Verificar & Híbrida & OA opcional & Alto impacto; mayor exigencia\\\bottomrule
 \end{longtable}
 \normalsize
+Detalle operativo en \path{Publicacion/analisis_revistas.md}.
 
 \subsection{Disponibilidad de datos y materiales}
-\textbf{DOI de Zenodo:} \completar.\\
-\textbf{Registro OSF:} \completar.\\
-\textbf{Licencia del dataset:} CC BY 4.0, una vez aprobada y publicada.\\
-\textbf{Citación del software/dataset:} \completar conforme a \cite{smith2016software,druskat2021cff}.
+\textbf{DOI de Zenodo:} pendiente de depósito al envío.\\
+\textbf{Registro OSF:} pendiente (obligatorio antes del experimento).\\
+\textbf{Licencia del dataset:} CC BY 4.0.\\
+\textbf{Citación:} conforme a \cite{smith2016software,druskat2021cff} vía \path{CITATION.cff}.
 
 \section{Estructura y verificación del repositorio}
 \subsection{Árbol obligatorio}
@@ -809,38 +830,38 @@ SIGBUNI_ISR401/
 \subsection{Archivos raíz obligatorios}
 \begin{tabularx}{\textwidth}{P{0.22\textwidth}Y P{0.14\textwidth}}\toprule
 \textbf{Archivo} & \textbf{Contenido mínimo} & \textbf{Estado}\\\midrule
-README.md & Sistema, integrantes/roles, enlaces, reproducción del experimento y tabla de contenidos. & \completar\\
-LICENSE & Licencia del código y CC BY 4.0 para datos/documento. & \completar\\
-CITATION.cff & Autores, ORCID, título, versión, fecha y DOI. & \completar\\
-CHANGELOG.md & Historial desde 1A. & \completar\\
-checksums.sha256 & Hashes de archivos multimedia. & \completar\\\bottomrule
+README.md & Sistema, integrantes/roles, enlaces, reproducción y TOC. & Actualizado\\
+LICENSE & MIT (código MVP) + CC BY 4.0 (datos/documento). & Actualizado\\
+CITATION.cff & Autores, título, versión y fecha (ORCID/DOI pendientes). & Actualizado\\
+CHANGELOG.md & Historial desde 1A hasta 1.1. & Actualizado\\
+checksums.sha256 & Hashes de multimedia verificable. & Actualizado\\\bottomrule
 \end{tabularx}
 
 \subsection{Checklist de aceptación y gatekeepers}
 \begin{longtable}{P{0.06\textwidth}P{0.78\textwidth}P{0.10\textwidth}}\toprule
 \textbf{ID} & \textbf{Comprobación} & \textbf{Estado}\\\midrule\endfirsthead
 \toprule\textbf{ID} & \textbf{Comprobación} & \textbf{Estado}\\\midrule\endhead
-CK-01 & Estructura de carpetas exacta. & \completar\\
-CK-02 & Cinco archivos raíz completos. & \completar\\
-CK-03 & PDF unificado, numerado, con historial y enlace GitHub. & \completar\\
-CK-04 & Nomenclatura estándar de multimedia. & \completar\\
-CK-05 & Audio/video válido con ffprobe y duración mayor a cero. & \completar\\
-CK-06 & Consentimientos legibles y firmados. & \completar\\
-CK-07 & Cuestionario con fotos y $n\geq30$. & \completar\\
-CK-08 & Protocolo OSF registrado antes de ejecutar. & \completar\\
-CK-09 & Prompts con parámetros reproducibles, si aplica. & \completar\\
-CK-10 & Scripts reproducen tablas y figuras. & \completar\\
-CK-11 & Hashes SHA-256 coinciden. & \completar\\
-CK-12 & Matriz con al menos 40 filas y columnas obligatorias. & \completar\\
-CK-13 & Toda evidencia declarada existe y es verificable. & \completar\\
-CK-14 & 25 RF, 15 RNF, 10 CU detallados y explicabilidad IA. & \completar\\
-CK-15 & MVP ejecutable con cobertura mínima del 60\% de RF Must. & \completar\\\bottomrule
+CK-01 & Estructura de carpetas alineada (ERS/Evidencias/Modelado/...). & Parcial (falta renombrar a 01\_--07\_)\\
+CK-02 & Cinco archivos raíz completos. & Cumple\\
+CK-03 & PDF unificado desde LaTeX, historial y enlace GitHub. & Fuente lista; compilar PDF\\
+CK-04 & Nomenclatura estándar de multimedia. & Parcial\\
+CK-05 & Audio válido con ffprobe ($>$0\,s). & 1 audio OK; videos faltan\\
+CK-06 & Consentimientos legibles y firmados. & 10 OK\\
+CK-07 & Cuestionario con fotos y $n\geq30$. & PDF presente; falta CSV/fotos\\
+CK-08 & Protocolo OSF registrado antes de ejecutar. & Pendiente\\
+CK-09 & Prompts con parámetros reproducibles. & Plantilla lista\\
+CK-10 & Scripts reproducen tablas y figuras. & Plantilla lista\\
+CK-11 & Hashes SHA-256 coinciden. & Generado\\
+CK-12 & Matriz $\geq$40 filas y columnas obligatorias. & 45 filas OK\\
+CK-13 & Toda evidencia declarada existe y es verificable. & Parcial (inventario honesto)\\
+CK-14 & 25 RF, 15 RNF, $\geq$10 CU y explicabilidad IA. & Cumple\\
+CK-15 & MVP ejecutable con $\geq$60\% RF Must. & No cumple aún\\\bottomrule
 \end{longtable}
 
 \section{Conclusiones y trabajo pendiente}
-La línea base disponible define el contexto de SIGBUNI, seis objetivos, veinte RF, ocho RNF, ocho restricciones, seis CU detallados, cinco mockups, un diagrama de contexto, un diagrama general de casos de uso, un modelo conceptual de clases y una trazabilidad parcial. El documento los conserva y los reorganiza dentro de la estructura solicitada para la Entrega 3 (2A).
+Este ERS/SRS consolida SIGBUNI para la Entrega 3 (2A) con \textbf{25 RF}, \textbf{15 RNF} (incluidas explicabilidades de IA), mapeo LOPDP, historias Connextra/Gherkin para RF Must, \textbf{13 CU} detallados, UML (secuencia, actividad, estados, componentes, despliegue e i*), priorización MoSCoW+Kano+WSJF, matriz de trazabilidad con \textbf{45 filas}, mockups Visily trazados y protocolo empírico Enfoque~1.
 
-Para cumplir la rúbrica aún deben completarse y validarse, como mínimo: cinco RF adicionales, siete RNF con cobertura de las nueve características y explicabilidad, el mapeo legal por artículo, historias Connextra y Gherkin para todos los RF Must, cuatro CU detallados adicionales, los diagramas UML restantes, mockups de alta fidelidad, Kano/WSJF, cuarenta filas completas de trazabilidad, segunda ronda de evidencias, MVP ejecutable, protocolo registrado en OSF y paquete FAIR. Los resultados y la discusión permanecerán vacíos hasta que existan datos primarios y scripts reproducibles.
+\textbf{Pendiente crítico para gatekeepers/C7--C10:} videos de la segunda ronda, audios adicionales, fotos fechadas, walkthroughs con acta, exportación CSV del cuestionario ($n\geq30$), registro OSF previo, MVP ejecutable con $\geq$60\% RF Must, video demo y depósito FAIR/Zenodo. No se fabrican resultados experimentales ni evidencias multimedia ausentes del repositorio.
 
 \appendices
 \section{Catálogo inicial de evidencias}

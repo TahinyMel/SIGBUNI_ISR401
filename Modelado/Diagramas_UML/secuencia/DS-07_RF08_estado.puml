@@ -1,0 +1,15 @@
+@startuml DS-07_RF08_estado
+skinparam shadowing false
+
+actor Usuario
+participant "UI Catalogo" as UI
+participant "ServicioCatalogo" as SC
+database BD
+Usuario -> UI: seleccionar material
+UI -> SC: obtenerEstado(id)
+SC -> BD: estadoActual()
+BD --> SC: disponible/prestado/...
+SC --> UI: estado
+UI --> Usuario: estado visible
+
+@enduml
